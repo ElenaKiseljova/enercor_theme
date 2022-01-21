@@ -57,8 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let hamburger = document.querySelector(".hamburger"),
         nav = document.querySelector(".header__navigation"),
         menuFlag = false,
-        bodyDontScroll = document.body;
-    mainSection = document.querySelector("main");
+        bodyDontScroll = document.body,
+        mainSection = document.querySelector("main");
 
 
     if (hamburger) {

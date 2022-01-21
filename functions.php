@@ -12,9 +12,12 @@
 
   // Scripts theme
   function enercor_scripts () {
-    if (!is_404()) {
+    if (!is_404()) {      
+      wp_enqueue_script('tween-max-script', get_template_directory_uri() . '/assets/js/tween-max.min.js', $deps = array(), $ver = null, $in_footer = true );
       wp_enqueue_script('swiper-script', get_template_directory_uri() . '/assets/js/swiper-bundle.min.js', $deps = array(), $ver = null, $in_footer = true );
     }    
+
+    wp_enqueue_script('cursor-script', get_template_directory_uri() . '/assets/js/cursor.js', $deps = array(), $ver = null, $in_footer = true );
 
     wp_enqueue_script('main-script', get_template_directory_uri() . '/assets/js/script.min.js', $deps = array(), $ver = null, $in_footer = true );
     
@@ -62,8 +65,11 @@
       /* ==============================================
       ********  //Размеры картирок
       =============================================== */
-      // add_image_size( 'enercor_about_us', 918, 401, false);
-      // add_image_size( 'enercor_about_us_2x', 1836, 802, false);
+      add_image_size( 'front_main_bg', 1440, 906, false);
+      add_image_size( 'front_projects_bg', 1440, 885, false);
+
+      add_image_size( 'project_page', 1440, 900, false);
+      add_image_size( 'project_archive', 432, 238, true);
     }
   endif;
   
@@ -111,7 +117,47 @@
           'hierarchical'        => false,
           'supports'            => ['title', 'editor', 'thumbnail', 'page-attributes', 'custom-fields', 'excerpt' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
           'taxonomies'          => ['cities'],
-          'has_archive'         => false,
+          'has_archive'         => true,
+          'rewrite'             => true,
+          'query_var'           => true,
+        ] );
+
+        // Проекты
+        register_post_type( 'projects', [
+          'label'  => null,
+          'labels' => [
+            'name'               => 'Проекты', // основное название для типа записи
+            'singular_name'      => 'Проект', // название для одной записи этого типа
+            'add_new'            => 'Добавить проект', // для добавления новой записи
+            'add_new_item'       => 'Добавление проекта', // заголовка у вновь создаваемой записи в админ-панели.
+            'edit_item'          => 'Редактирование проекта', // для редактирования типа записи
+            'new_item'           => 'Новый проект', // текст новой записи
+            'view_item'          => 'Показать проект', // для просмотра записи этого типа.
+            'search_items'       => 'Искать проект', // для поиска по этим типам записи
+            'not_found'          => 'Проект не найден', // если в результате поиска ничего не было найдено
+            'not_found_in_trash' => 'Проект не найден в корзине', // если не было найдено в корзине
+            'parent_item_colon'  => '', // для родителей (у древовидных типов)
+            'menu_name'          => 'Проекты', // название меню
+          ],
+          'description'         => 'Это наши проекты',
+          'public'              => true,
+          'publicly_queryable'  => true, // зависит от public
+          'exclude_from_search' => true, // зависит от public
+          'show_ui'             => true, // зависит от public
+          'show_in_nav_menus'   => true, // зависит от public
+          'show_in_menu'        => true, // показывать ли в меню адмнки
+          'show_in_admin_bar'   => true, // зависит от show_in_menu
+          'show_in_rest'        => true, // добавить в REST API. C WP 4.7
+          'rest_base'           => null, // $post_type. C WP 4.7
+          'menu_position'       => 18,
+          'menu_icon'           => 'dashicons-schedule',
+          //'capability_type'   => 'post',
+          //'capabilities'      => 'post', // массив дополнительных прав для этого типа записи
+          //'map_meta_cap'      => null, // Ставим true чтобы включить дефолтный обработчик специальных прав
+          'hierarchical'        => false,
+          'supports'            => ['title', 'editor', 'thumbnail', 'page-attributes', 'custom-fields', 'excerpt' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
+          'taxonomies'          => ['services'],
+          'has_archive'         => true,
           'rewrite'             => true,
           'query_var'           => true,
         ] );
@@ -123,7 +169,7 @@
       ********  //Регистрация кастомных таксономий 
       =============================================== */
       function register_custom_taxonomy () {
-        // Категории
+        // Города
         register_taxonomy( 'cities', [ 'team' ], [ 
           'label'                 => '', // определяется параметром $labels->name
           'labels'                => [
@@ -149,6 +195,44 @@
           // 'show_tagcloud'         => true, // равен аргументу show_ui
           // 'show_in_quick_edit'    => null, // равен аргументу show_ui
           'hierarchical'          => false,
+      
+          'rewrite'               => true,
+          //'query_var'             => $taxonomy, // название параметра запроса
+          // 'capabilities'          => array(),
+          // 'meta_box_cb'           => null, // html метабокса. callback: `post_categories_meta_box` или `post_tags_meta_box`. false — метабокс отключен.
+          // 'show_admin_column'     => false, // авто-создание колонки таксы в таблице ассоциированного типа записи. (с версии 3.5)
+          'show_in_rest'          => true, // добавить в REST API
+          // 'rest_base'             => null, // $taxonomy
+          // '_builtin'              => false,
+          //'update_count_callback' => '_update_post_term_count',
+        ] );
+
+        // Услуги
+        register_taxonomy( 'services', [ 'projects' ], [
+          'label'                 => '', // определяется параметром $labels->name
+          'labels'                => [
+            'name'              => 'Услуги',
+            'singular_name'     => 'Услуга',
+            'search_items'      => 'Найти услугу',
+            'all_items'         => 'Все услуги',
+            'view_item '        => 'Посмотреть услугу',
+            'parent_item'       => 'Родительская услуга',
+            'parent_item_colon' => 'Родительская услуга:',
+            'edit_item'         => 'Редактировать услугу',
+            'update_item'       => 'Обновить услугу',
+            'add_new_item'      => 'Добавить новую услугу',
+            'new_item_name'     => 'Название новой услуги',
+            'menu_name'         => 'Услуги',
+          ],
+          'description'           => 'Услуги, предоставляемые нашей фирмой', // описание таксономии
+          'public'                => true,
+          'publicly_queryable'    => false, // равен аргументу public
+          // 'show_in_nav_menus'     => true, // равен аргументу public
+          'show_ui'               => true, // равен аргументу public
+           'show_in_menu'          => true, // равен аргументу show_ui
+          // 'show_tagcloud'         => true, // равен аргументу show_ui
+          // 'show_in_quick_edit'    => null, // равен аргументу show_ui
+          'hierarchical'          => true,
       
           'rewrite'               => true,
           //'query_var'             => $taxonomy, // название параметра запроса

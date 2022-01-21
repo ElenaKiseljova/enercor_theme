@@ -11,6 +11,7 @@
     ?>
 </head>
 <body>
+<div id="ink-cursor" class="ink-cursor"></div>
 <header class="header">
     <div class="container header__container">
         <a class="header__logo logo" href="#">
