@@ -2,22 +2,17 @@
   get_header(  );
 ?>
 
-<main class="main">
-    <?php 
-      get_template_part( 'template-parts/front/main' );
-
-      get_template_part( 'template-parts/front/who_we_are' );
-
-      get_template_part( 'template-parts/front/unique_team' );
-
-      get_template_part( 'template-parts/front/ceo' );
-
-      get_template_part( 'template-parts/front/services' );
-
-      get_template_part( 'template-parts/front/projects' );
-
-      get_template_part( 'template-parts/front/selected' );
+<main class="main" style="display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;background:#1c1c1c; min-height: 50vh;">
+  <h1>
+  <?php 
+      the_title(  );
     ?> 
+  </h1>
+  <div>
+    <?php 
+      the_content(  );
+    ?> 
+  </div>
 </main>
 
 <?php 

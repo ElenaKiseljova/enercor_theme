@@ -21,15 +21,7 @@
 
     wp_enqueue_script('main-script', get_template_directory_uri() . '/assets/js/script.min.js', $deps = array(), $ver = null, $in_footer = true );
     
-    // wp_enqueue_script('form-script', get_template_directory_uri() . '/assets/js/form.js', $deps = array('jquery'), $ver = null, $in_footer = true );
-
-    // // AJAX
-    // $args = array(
-    //   'url' => admin_url('admin-ajax.php'),
-    //   'nonce' => wp_create_nonce('form.js_nonce'),
-    // );
-
-    // wp_localize_script( 'form-script', 'enercor_ajax', $args);   
+    wp_enqueue_script('additional-script', get_template_directory_uri() . '/assets/js/additional.js', $deps = array(), $ver = null, $in_footer = true );
   }
 
   add_action( 'after_setup_theme', 'enercor_after_setup_theme_function' );
@@ -65,11 +57,14 @@
       /* ==============================================
       ********  //Размеры картирок
       =============================================== */
-      add_image_size( 'front_main_bg', 1440, 906, false);
+      add_image_size( 'main_bg', 1440, 900, false);
+      add_image_size( 'main_bg_half', 1440, 450, true);
+
       add_image_size( 'front_projects_bg', 1440, 885, false);
 
-      add_image_size( 'project_page', 1440, 900, false);
-      add_image_size( 'project_archive', 432, 238, true);
+      add_image_size( 'project_archive', 432, 238, true);      
+
+      add_image_size( 'stage', 1328, 447, false);   
     }
   endif;
   
@@ -226,14 +221,13 @@
           ],
           'description'           => 'Услуги, предоставляемые нашей фирмой', // описание таксономии
           'public'                => true,
-          'publicly_queryable'    => false, // равен аргументу public
+          'publicly_queryable'    => true, // равен аргументу public
           // 'show_in_nav_menus'     => true, // равен аргументу public
           'show_ui'               => true, // равен аргументу public
            'show_in_menu'          => true, // равен аргументу show_ui
           // 'show_tagcloud'         => true, // равен аргументу show_ui
           // 'show_in_quick_edit'    => null, // равен аргументу show_ui
           'hierarchical'          => true,
-      
           'rewrite'               => true,
           //'query_var'             => $taxonomy, // название параметра запроса
           // 'capabilities'          => array(),
@@ -305,75 +299,33 @@
 
   	return $classes;
   }
-  
+
   /* ==============================================
-  ********  //Отправка письма на мейл
+  ********  //Класс форм
+  =============================================== */
+  add_filter( 'wpcf7_form_class_attr', 'filter_cf7_class' );
+
+  function filter_cf7_class( $class ){
+    $class .= ' contact__form';
+
+    return $class;
+  }
+
+  /* ==============================================
+  ********  //ACF для архива
   =============================================== */
 
-  // add_action('wp_ajax_enercor_sendmail', 'enercor_sendmail');
-  // add_action('wp_ajax_nopriv_enercor_sendmail', 'enercor_sendmail');
+  add_action('init', 'mindbase_create_acf_pages');
 
-  // function enercor_sendmail () {
-  //   check_ajax_referer('form.js_nonce', 'security');
-
-  //   if (isset($_POST['phone']) && empty($_POST['phone'])) {
-  //     $response = [
-  //       'name' => 'phone',
-  //       'error' => 'Укажите телефон'
-  //     ];
-      
-  //     wp_send_json_error( $response );
+  function mindbase_create_acf_pages() {
+    if(function_exists('acf_add_options_page')) {
+      acf_add_options_sub_page(array(
+        'page_title'      => 'Архив проектов', /* Use whatever title you want */
+        
+        'parent_slug'     => 'edit.php?post_type=projects', /* Change "services" to fit your situation */
+        'capability' => 'manage_options'
+      ));
+    }
+  }
   
-  //     wp_die();
-  //   }
-    
-  //   if (isset($_POST['name']) && empty($_POST['name'])) {   
-  //     $response = [
-  //       'name' => 'name',
-  //       'error' => 'Укажите имя'
-  //     ];
-      
-  //     wp_send_json_error( $response );
-  
-  //     wp_die();
-  //   }
-    
-  //   $contactSubject = isset($_POST['subject']) ? esc_html( $_POST['subject'] ) : 'Обратный звонок';
-  //   $contactName = isset($_POST['name']) ? ('<p><b>Имя - </b> ' . esc_html( $_POST['name'] ) . '</p>') : '';
-  //   $contactPhone = isset($_POST['phone']) ? ('<p><b>Телефон - </b> ' . esc_html( $_POST['phone'] ) . '</p>') : '';
-  //   $contactCourse = isset($_POST['course']) ? ('<p><b>Курс - </b> ' . esc_html( $_POST['course'] ) . '</p>') : '';
-    
-  //   $contactMail = $contactName . $contactPhone . $contactCourse;
-
-  //   $dev_mail = 'e.a.kiseljova@gmail.com'; // для проверки
-    
-  //   $to = (isset($_POST['mailto']) && !empty($_POST['mailto'])) ? 
-  //     [esc_html( $_POST['mailto'] ), $dev_mail] : 
-  //     ((get_option('admin_email') !== $dev_mail) ? 
-  //     [get_option('admin_email'), $dev_mail] : 
-  //     get_option('admin_email'));
-      
-  //   $site_name = 'From: ' . get_bloginfo( 'name' ) . ' <' . get_option('admin_email') . '>';
-
-  //   // удалим фильтры, которые могут изменять заголовок $headers
-  //   remove_all_filters( 'wp_mail_from' );
-  //   remove_all_filters( 'wp_mail_from_name' );
-
-  //   $headers = array(
-  //     $site_name,
-  //     'content-type: text/html',
-  //   );
-
-  //   wp_mail( $to, $contactSubject, $contactMail, $headers );
-
-  //   $response = [
-  //     'post' => $_POST,
-  //     'mail' => $contactMail,
-  //     'mailto' => $to
-  //   ];
-
-  //   wp_send_json_success($response);
-
-  //   wp_die();
-  // }
 ?>

@@ -13,7 +13,7 @@
   
   <section class="start-screen js-start-screen ">
     <?php if ($image && !empty($image)) : ?>
-      <img class="start-screen__img" src="<?= $image['sizes']['front_main_bg']; ?>" alt="<?= bloginfo( 'name' ); ?>">
+      <img class="start-screen__img" src="<?= $image['sizes']['main_bg']; ?>" alt="<?= bloginfo( 'name' ); ?>">
     <?php endif; ?>
     
     <div class="container">

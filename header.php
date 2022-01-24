@@ -14,7 +14,7 @@
 <div id="ink-cursor" class="ink-cursor"></div>
 <header class="header">
     <div class="container header__container">
-        <a class="header__logo logo" href="#">
+        <a class="header__logo logo" href="<?= bloginfo( 'url' ) ?>">
             <svg class="header__logo-icon" width="31" height="32">
                 <use xlink:href="<?= get_template_directory_uri(  ); ?>/assets/img/sprite.svg#logo"></use>
             </svg>
