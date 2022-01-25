@@ -68,7 +68,7 @@
                       <?php if (!is_wp_error( $service_link )) : ?>
                         <li class="selected__card-info-item">
                           <a href="<?= $service_link; ?>" class="selected__card-info-link">
-                            <?= (end($service) === $service) ? $service->name : ($service->name . ','); ?>
+                            <?= end($service) ? $service->name : ($service->name . ','); ?>
                           </a>
                         </li> 
                       <?php endif; ?>                                           

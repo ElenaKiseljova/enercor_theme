@@ -62,7 +62,7 @@
                           ?>
                           <?php if (!is_wp_error( $service_link )) : ?>
                             <a href="<?= $service_link; ?>">
-                              <?= (end($service) === $service) ? $service->name : ($service->name . ','); ?>
+                              <?= end($service) ? $service->name : ($service->name . ','); ?>
                             </a>
                           <?php endif; ?>                                           
                         <?php endforeach; ?>
@@ -87,6 +87,9 @@
                         <?= $title; ?>
                       </h6>
                     </div>
+                    <div class="popup__header-wrap-text">
+                        <p class="popup__header-text"><?= $subtitle; ?></p>
+                    </div>
                   </div>
                 </template>
 
@@ -103,7 +106,7 @@
                         ?>
                         <?php if (!is_wp_error( $service_link )) : ?>
                           <a href="<?= $service_link; ?>">
-                            <?= (end($service) === $service) ? $service->name : ($service->name . ','); ?>
+                            <?= end($service) ? $service->name : ($service->name . ','); ?>
                           </a>
                         <?php endif; ?>                                           
                       <?php endforeach; ?>
@@ -140,9 +143,9 @@
       <?php endif; ?>
       
       <?php if ($button && !empty($button)) : ?>
-        <h3 class="completed-projects__title completed-projects__title-show title">
+        <button class="completed-projects__btn">
           <?= $button; ?>
-        </h3>
+        </button>
       <?php endif; ?>
 
       <div class="popup">

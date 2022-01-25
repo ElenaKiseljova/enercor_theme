@@ -21,5 +21,37 @@
         });
       });
     }
+
+    // Read more
+    const contents = document.querySelectorAll('.reference__about-text');
+    const readMoreButtons = document.querySelectorAll('.reference__about-link--more');
+
+    contents.forEach((content, i) => {
+      const children = content.querySelectorAll('*');
+
+      content.innerHTML = '';
+      content.appendChild(children[0]);
+
+      readMoreButtons[i]?.addEventListener('click', () => {
+        if (readMoreButtons[i].classList.contains('active')) {
+          readMoreButtons[i].textContent = 'Read more';
+
+          content.innerHTML = '';
+          content.appendChild(children[0]);
+
+          readMoreButtons[i].classList.remove('active');
+        } else {
+          readMoreButtons[i].textContent = 'Read less';
+
+          const childrenHTML = [].map.call(children, (child) => {
+            return child.outerHTML;
+          }).join('');
+
+          content.innerHTML = childrenHTML;
+
+          readMoreButtons[i].classList.add('active');
+        }
+      });
+    });
   });
 })();
