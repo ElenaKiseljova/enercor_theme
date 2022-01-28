@@ -21,7 +21,15 @@
 
     wp_enqueue_script('main-script', get_template_directory_uri() . '/assets/js/script.min.js', $deps = array(), $ver = null, $in_footer = true );
     
-    wp_enqueue_script('additional-script', get_template_directory_uri() . '/assets/js/additional.js', $deps = array(), $ver = null, $in_footer = true );
+    wp_enqueue_script('additional-script', get_template_directory_uri() . '/assets/js/additional.js', $deps = array('jquery'), $ver = null, $in_footer = true );
+  
+    // AJAX
+    $args = array(
+      'url' => admin_url('admin-ajax.php'),
+      'nonce' => wp_create_nonce('additional-script.js_nonce'),
+    );
+
+    wp_localize_script( 'additional-script', 'enercor_ajax', $args);  
   }
 
   add_action( 'after_setup_theme', 'enercor_after_setup_theme_function' );
@@ -328,4 +336,121 @@
     }
   }
   
+  /* ==============================================
+  ********  //Список проектов
+  =============================================== */
+  add_action('wp_ajax_enercor_projects_list', 'enercor_projects_list');
+  add_action('wp_ajax_nopriv_enercor_projects_list', 'enercor_projects_list');
+
+  function enercor_projects_list () {
+    check_ajax_referer('additional-script.js_nonce', 'security');
+
+    try {
+      $term_id = (int) $_POST['term_id'];
+      $posts_per_page = (int) $_POST['posts_per_page'];
+      $paged = (int) $_POST['paged'];
+
+      $response = [
+        'post' => $_POST,
+      ];
+
+      ob_start();
+
+      $show_more = enercor_projects_list_items_html( $term_id, $posts_per_page, $paged );
+  
+      $response['content'] = ob_get_contents();
+      $response['show_more'] = $show_more;
+  
+      ob_clean();
+  
+      wp_send_json_success( $response );
+    } catch (Throwable $th) {
+      wp_send_json_error( $th );
+    }    
+  }
+
+  function enercor_projects_list_html() {
+      
+    ?>
+      <div class="swiper international-project">
+        <div class="swiper-wrapper" id="international-project-ajax">
+          <?php 
+            $show_more = enercor_projects_list_items_html(-1, 6, 1); 
+          ?>
+        </div>
+      </div>
+      
+    <?php
+
+    enercor_projects_more_button_html($show_more['visibility']);
+  }
+
+  function enercor_projects_list_items_html ( $term_id, $posts_per_page = 6, $paged = 1 ) { 
+    $show_more = [
+      'next_page' => $paged + 1,
+      'visibility' => false,
+    ];
+
+    $args = array(
+      'post_type' => 'projects',
+      'post_status' => 'publish',
+      'order' => 'ASC',
+      'orderby' => 'menu_order',
+      'posts_per_page' => $posts_per_page,
+      'paged' => $paged,
+    );
+
+    if ((int) $term_id !== -1) {
+      $args['tax_query'] = array(
+        array(
+        'taxonomy' => 'services',
+        'field' => 'term_id',
+        'terms' => (int) $term_id,
+        )
+      );
+    }
+
+    $query = new WP_Query( $args ); 
+
+    if ( $query->have_posts() ) {
+      $max_num_pages = (int) $query->max_num_pages;
+
+      if ($max_num_pages > $paged) {
+        $show_more['visibility'] = true;
+      }
+
+      while ( $query->have_posts() ) {
+        $query->the_post();
+
+        get_template_part( 'template-parts/projects/project' );
+      }    
+
+      wp_reset_postdata();
+    } else {
+      ?>
+  
+        <p class="completed-projects__slide-title">
+          <?php 
+            _e( 'Projects not found', 'gagarin' );
+          ?>
+        </p>
+        
+      <?php
+    } 
+
+    return $show_more;
+  } 
+
+  function enercor_projects_more_button_html ( $show = false, $term_id = -1, $paged = 2 ) {
+    $completed = get_field( 'completed', 'option' );
+    $button = $completed['button']; 
+    
+    if ( $button && !empty($button) && $show ) {
+      ?>
+        <button class="completed-projects__btn completed-projects__btn--show-more" data-paged="<?= $paged; ?>" data-term-id="<?= $term_id; ?>">
+          <?= $button; ?>
+        </button>
+      <?php
+    }
+  }
 ?>
