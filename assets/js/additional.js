@@ -105,6 +105,10 @@
           if (response.success === true && dataAjaxContainer) {
             dataAjaxContainer.innerHTML += response.data.content;
 
+            const projects = dataAjaxContainer.querySelectorAll(".completed-projects--slide:not(.popup-activated)")
+            // console.log(projects);
+            window.activateProjectsPopup(projects);
+
             if (response.data.show_more.visibility === false) {
               showMoreButton.remove();
             } else {

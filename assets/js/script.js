@@ -20,31 +20,31 @@ document.addEventListener("DOMContentLoaded", function () {
   })
 
   // const swiperGrid = new Swiper(".international-project", {
-  //   observer: true,
-  //   observeSlideChildren: true,
-  //   observeParents: true,
+  //     observer: true,
+  //     observeSlideChildren: true,
+  //     observeParents: true,
 
-  //   slidesPerView: 3,
-  //   grid: {
-  //     rows: 2,
-  //     fill: 'row',
-  //   },
-  //   spaceBetween: 27,
-  //   breakpoints: {
-  //     320: {
-  //       slidesPerView: "auto",
-  //       grid: {
-  //         rows: 1,
-  //         fill: 'row',
-  //       }
-  //     },
-  //     1390: {
-  //       grid: {
+  //     slidesPerView: 3,
+  //     grid: {
   //         rows: 2,
   //         fill: 'row',
-  //       },
+  //     },
+  //     spaceBetween: 27,
+  //     breakpoints: {
+  //         320: {
+  //             slidesPerView: "auto",
+  //             grid: {
+  //                 rows: 1,
+  //                 fill: 'row',
+  //             }
+  //         },
+  //         1390: {
+  //             grid: {
+  //                 rows: 2,
+  //                 fill: 'row',
+  //             },
+  //         }
   //     }
-  //   }
   // });
 
 
@@ -96,28 +96,35 @@ document.addEventListener("DOMContentLoaded", function () {
     popupSlide = document.querySelector(".popup"),
     overlay = document.querySelector(".js-overlay-modal");
 
+  window.activateProjectsPopup = (projects) => {
+    projects.forEach((item) => {
+      item.classList.add('popup-activated');
 
-  projectsSlide.forEach((item) => {
-    item.addEventListener("click", (e) => {
-      e.preventDefault();
-      const popupHeader = document.querySelector('.popup__header'),
-        popupContent = document.querySelector(".popup__content .popup__content-wrap"),
+      item.addEventListener("click", (e) => {
+        e.preventDefault();
+        const popupHeader = document.querySelector('.popup__header'),
+          popupContent = document.querySelector(".popup__content .popup__content-wrap"),
 
-        popupTemplateHeader = item.querySelector(".popup__template-header"),
-        popupTemplateContent = item.querySelector(".popup__template-content");
+          popupTemplateHeader = item.querySelector(".popup__template-header"),
+          popupTemplateContent = item.querySelector(".popup__template-content");
 
-      popupHeader.innerHTML = '';
-      popupContent.innerHTML = '';
-      popupHeader.appendChild(popupTemplateHeader.content.cloneNode(true));
-      popupContent.appendChild(popupTemplateContent.content.cloneNode(true))
+        popupHeader.innerHTML = '';
+        popupContent.innerHTML = '';
+        popupHeader.appendChild(popupTemplateHeader.content.cloneNode(true));
+        popupContent.appendChild(popupTemplateContent.content.cloneNode(true))
 
-      popupSlide.classList.add("popup__show");
-      overlay.classList.add("active");
-      bodyDontScroll.classList.add("body-scroll");
+        popupSlide.classList.add("popup__show");
+        overlay.classList.add("active");
+        bodyDontScroll.classList.add("body-scroll");
 
 
-    })
-  })
+      })
+    });
+  };
+
+  window.activateProjectsPopup(projectsSlide);
+
+
 
 
   document.body.addEventListener('keyup', function (e) {
