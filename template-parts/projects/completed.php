@@ -1,5 +1,7 @@
 <?php 
-  $completed = get_field( 'completed', 'option' );
+  $archive_projects_page_id = get_field( 'archive_projects', 'option' );
+
+  $completed = get_field( 'completed', $archive_projects_page_id );
 ?>
 <?php if ($completed && !is_wp_error( $completed )) : ?>
   <?php 

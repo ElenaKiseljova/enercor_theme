@@ -1,5 +1,7 @@
 <?php 
-  $phases = get_field( 'phases', 'option' );
+    $archive_projects_page_id = get_field( 'archive_projects', 'option' );
+
+    $phases = get_field( 'phases', $archive_projects_page_id );
 ?>
 <?php if ($phases && !is_wp_error( $phases )) : ?>
   <?php     

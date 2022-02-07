@@ -1,5 +1,7 @@
-<?php 
-  $stages = get_field( 'stages', 'option' );
+<?php
+  $archive_projects_page_id = get_field( 'archive_projects', 'option' ); 
+  
+  $stages = get_field( 'stages', $archive_projects_page_id );
 ?>
 <?php if ($stages && !is_wp_error( $stages )) : ?>
   <?php 

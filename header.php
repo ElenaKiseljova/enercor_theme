@@ -14,11 +14,14 @@
 <div id="ink-cursor" class="ink-cursor"></div>
 <header class="header">
     <div class="container header__container">
+        <?php 
+          $is_white_theme = is_post_type_archive( 'team' );
+        ?>
         <a class="header__logo logo" href="<?= bloginfo( 'url' ) ?>">
-            <svg class="header__logo-icon" width="31" height="32">
+            <svg class="header__logo-icon <?= $is_white_theme ? 'header__logo-icon--red' : ''; ?>" width="31" height="32">
                 <use xlink:href="<?= get_template_directory_uri(  ); ?>/assets/img/sprite.svg#logo"></use>
             </svg>
-            <svg class="header__logo-icon--text" width="102" height="23">
+            <svg class="header__logo-icon--text <?= $is_white_theme ? 'header__logo-icon--blue' : ''; ?>" width="102" height="23">
                 <use xlink:href="<?= get_template_directory_uri(  ); ?>/assets/img/sprite.svg#logo-text"></use>
             </svg>
         </a>

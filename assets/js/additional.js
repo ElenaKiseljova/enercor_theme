@@ -22,25 +22,25 @@
     }
 
     // Read more
-    const contents = document.querySelectorAll('.reference__about-text');
     const readMoreButtons = document.querySelectorAll('.reference__about-link--more');
 
-    contents.forEach((content, i) => {
+    readMoreButtons.forEach((readMoreButton, i) => {
+      const content = readMoreButton.previousElementSibling;
       const children = content.querySelectorAll('*');
 
       content.innerHTML = '';
       content.appendChild(children[0]);
 
-      readMoreButtons[i]?.addEventListener('click', () => {
-        if (readMoreButtons[i].classList.contains('active')) {
-          readMoreButtons[i].textContent = 'Read more';
+      readMoreButton.addEventListener('click', () => {
+        if (readMoreButton.classList.contains('active')) {
+          readMoreButton.textContent = 'Read more';
 
           content.innerHTML = '';
           content.appendChild(children[0]);
 
-          readMoreButtons[i].classList.remove('active');
+          readMoreButton.classList.remove('active');
         } else {
-          readMoreButtons[i].textContent = 'Read less';
+          readMoreButton.textContent = 'Read less';
 
           const childrenHTML = [].map.call(children, (child) => {
             return child.outerHTML;
@@ -48,7 +48,7 @@
 
           content.innerHTML = childrenHTML;
 
-          readMoreButtons[i].classList.add('active');
+          readMoreButton.classList.add('active');
         }
       });
     });
@@ -105,7 +105,7 @@
           if (response.success === true && dataAjaxContainer) {
             dataAjaxContainer.innerHTML += response.data.content;
 
-            const projects = dataAjaxContainer.querySelectorAll(".completed-projects--slide:not(.popup-activated)")
+            const projects = dataAjaxContainer.querySelectorAll(".completed-projects--slide")
             // console.log(projects);
             window.activateProjectsPopup(projects);
 

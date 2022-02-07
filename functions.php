@@ -6,8 +6,8 @@
   
   // Styles theme
   function enercor_styles () {
-    wp_enqueue_style('enercor-style', get_stylesheet_uri());
     wp_enqueue_style('swiper-style', get_template_directory_uri() . '/assets/css/swiper-bundle.min.css');
+    wp_enqueue_style('enercor-style', get_stylesheet_uri());    
   }
 
   // Scripts theme
@@ -19,7 +19,7 @@
 
     wp_enqueue_script('cursor-script', get_template_directory_uri() . '/assets/js/cursor.js', $deps = array(), $ver = null, $in_footer = true );
 
-    wp_enqueue_script('main-script', get_template_directory_uri() . '/assets/js/script.min.js', $deps = array(), $ver = null, $in_footer = true );
+    wp_enqueue_script('main-script', get_template_directory_uri() . '/assets/js/script.js', $deps = array(), $ver = null, $in_footer = true );
     
     wp_enqueue_script('additional-script', get_template_directory_uri() . '/assets/js/additional.js', $deps = array('jquery'), $ver = null, $in_footer = true );
   
@@ -73,6 +73,8 @@
       add_image_size( 'project_archive', 432, 238, true);      
 
       add_image_size( 'stage', 1328, 447, false);   
+
+      add_image_size( 'archive_member_photo', 402, 486, false); 
     }
   endif;
   
@@ -112,7 +114,7 @@
           'show_in_admin_bar'   => true, // зависит от show_in_menu
           'show_in_rest'        => true, // добавить в REST API. C WP 4.7
           'rest_base'           => null, // $post_type. C WP 4.7
-          'menu_position'       => 20,
+          'menu_position'       => 21,
           'menu_icon'           => 'dashicons-groups',
           //'capability_type'   => 'post',
           //'capabilities'      => 'post', // массив дополнительных прав для этого типа записи
@@ -152,7 +154,7 @@
           'show_in_admin_bar'   => true, // зависит от show_in_menu
           'show_in_rest'        => true, // добавить в REST API. C WP 4.7
           'rest_base'           => null, // $post_type. C WP 4.7
-          'menu_position'       => 18,
+          'menu_position'       => 20,
           'menu_icon'           => 'dashicons-schedule',
           //'capability_type'   => 'post',
           //'capabilities'      => 'post', // массив дополнительных прав для этого типа записи
@@ -198,6 +200,44 @@
           // 'show_tagcloud'         => true, // равен аргументу show_ui
           // 'show_in_quick_edit'    => null, // равен аргументу show_ui
           'hierarchical'          => false,
+      
+          'rewrite'               => true,
+          //'query_var'             => $taxonomy, // название параметра запроса
+          // 'capabilities'          => array(),
+          // 'meta_box_cb'           => null, // html метабокса. callback: `post_categories_meta_box` или `post_tags_meta_box`. false — метабокс отключен.
+          // 'show_admin_column'     => false, // авто-создание колонки таксы в таблице ассоциированного типа записи. (с версии 3.5)
+          'show_in_rest'          => true, // добавить в REST API
+          // 'rest_base'             => null, // $taxonomy
+          // '_builtin'              => false,
+          //'update_count_callback' => '_update_post_term_count',
+        ] );
+
+        // Специальные знания
+        register_taxonomy( 'expertise', [ 'team' ], [ 
+          'label'                 => '', // определяется параметром $labels->name
+          'labels'                => [
+            'name'              => 'Специальные знания',
+            'singular_name'     => 'Специальные знания',
+            'search_items'      => 'Найти Специальные знания',
+            'all_items'         => 'Все Специальные знания',
+            'view_item '        => 'Посмотреть Специальные знания',
+            'parent_item'       => 'Родительское Специальное знание',
+            'parent_item_colon' => 'Родительское Специальное знание:',
+            'edit_item'         => 'Редактировать Специальное знание',
+            'update_item'       => 'Обновить Специальное знание',
+            'add_new_item'      => 'Добавить новое Специальное знание',
+            'new_item_name'     => 'Название нового Специального знания',
+            'menu_name'         => 'Специальные знания',
+          ],
+          'description'           => 'Специальные знания, которыми обладают члены нашей команды', // описание таксономии
+          'public'                => false,
+          'publicly_queryable'    => false, // равен аргументу public
+          // 'show_in_nav_menus'     => true, // равен аргументу public
+          'show_ui'               => true, // равен аргументу public
+           'show_in_menu'          => true, // равен аргументу show_ui
+          // 'show_tagcloud'         => true, // равен аргументу show_ui
+          // 'show_in_quick_edit'    => null, // равен аргументу show_ui
+          'hierarchical'          => true,
       
           'rewrite'               => true,
           //'query_var'             => $taxonomy, // название параметра запроса
@@ -257,6 +297,8 @@
   =============================================== */
   add_filter( 'walker_nav_menu_start_el', 'enercor_filter_link_nav_menu', 10, 4 );
   function enercor_filter_link_nav_menu( $item_output, $item, $depth, $args ) {
+    $is_white_theme = is_post_type_archive( 'team' );
+
     // link attributes
 		$attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
 		$attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
@@ -265,7 +307,7 @@
     
     $class_link = '';
     if ($args->theme_location === 'top_menu') {
-      $class = 'header__link';
+      $class = $is_white_theme ? 'header__link header__link--black' : 'header__link';
     }
     
     if ($args->theme_location === 'bottom_menu') {
@@ -327,13 +369,16 @@
 
   function mindbase_create_acf_pages() {
     if(function_exists('acf_add_options_page')) {
-      acf_add_options_sub_page(array(
-        'page_title'      => 'Архив проектов', /* Use whatever title you want */
-        
-        'parent_slug'     => 'edit.php?post_type=projects', /* Change "services" to fit your situation */
-        'capability' => 'manage_options'
+      acf_add_options_page(array(
+        'page_title' 	=> 'Pages for Archives',
+        'menu_title'	=> 'Pages for Archives',
+        'menu_slug' 	=> 'pages-for-archives',
+        'capability'	=> 'edit_posts',
+        'icon_url' => 'dashicons-archive',
+        'position' => 22,
+        'redirect'		=> false,
       ));
-    }
+    }    
   }
   
   /* ==============================================

@@ -1,5 +1,7 @@
 <?php 
-  $main = get_field( 'main', 'option' );
+  $archive_projects_page_id = get_field( 'archive_projects', 'option' );
+
+  $main = get_field( 'main', $archive_projects_page_id );
 ?>
 <?php if ($main && !is_wp_error( $main )) : ?>
   <?php 

@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+  let flag = false;
+
   const swiperMain = new Swiper(".swiper-main", {
     slidesPerView: 3,
     spaceBetween: 12,
-
-    loop: true,
+    loop: flag,
     breakpoints: {
       320: {
         slidesPerView: "auto",
@@ -16,36 +17,51 @@ document.addEventListener("DOMContentLoaded", function () {
         slidesPerView: "auto",
       }
 
+    },
+    on: {
+      init: function () {
+        const numberOfSlides = this.slides.length;
+        if (numberOfSlides <= 3) {
+          flag = false;
+          this.disable();
+          let wrapper = document.querySelector(".swiper-wrapper").classList.add("wrapper-disabled");
+        } else if (numberOfSlides > 3) {
+          let wrapper = document.querySelector(".swiper-wrapper").classList.remove("wrapper-disabled");
+          this.enable();
+          flag = true;
+        }
+      }
     }
-  })
+  });
+  const swiperTeamDesc = new Swiper('.swiper-team-desc', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    speed: 400,
+    loop: true,
+    allowTouchMove: false,
+    simulateTouch: false,
+    navigation: {
+      nextEl: '.team-workers__btn-right',
+      prevEl: '.team-workers__btn-left',
+    },
+  });
 
-  // const swiperGrid = new Swiper(".international-project", {
-  //     observer: true,
-  //     observeSlideChildren: true,
-  //     observeParents: true,
+  const swiperTeam = new Swiper('.swiper-team', {
+    slidesPerView: 'auto',
+    spaceBetween: 21,
+    speed: 500,
+    slideActiveClass: 'team-workers__slide--active',
+    loop: true,
 
-  //     slidesPerView: 3,
-  //     grid: {
-  //         rows: 2,
-  //         fill: 'row',
-  //     },
-  //     spaceBetween: 27,
-  //     breakpoints: {
-  //         320: {
-  //             slidesPerView: "auto",
-  //             grid: {
-  //                 rows: 1,
-  //                 fill: 'row',
-  //             }
-  //         },
-  //         1390: {
-  //             grid: {
-  //                 rows: 2,
-  //                 fill: 'row',
-  //             },
-  //         }
-  //     }
-  // });
+    navigation: {
+      nextEl: '.team-workers__btn-right',
+      prevEl: '.team-workers__btn-left',
+    },
+
+    thumbs: {
+      swiper: swiperTeamDesc,
+    }
+  });
 
 
   let header = document.querySelector(".header"),
@@ -96,36 +112,29 @@ document.addEventListener("DOMContentLoaded", function () {
     popupSlide = document.querySelector(".popup"),
     overlay = document.querySelector(".js-overlay-modal");
 
+
   window.activateProjectsPopup = (projects) => {
     projects.forEach((item) => {
       item.classList.add('popup-activated');
-
       item.addEventListener("click", (e) => {
         e.preventDefault();
         const popupHeader = document.querySelector('.popup__header'),
           popupContent = document.querySelector(".popup__content .popup__content-wrap"),
-
           popupTemplateHeader = item.querySelector(".popup__template-header"),
           popupTemplateContent = item.querySelector(".popup__template-content");
-
         popupHeader.innerHTML = '';
         popupContent.innerHTML = '';
         popupHeader.appendChild(popupTemplateHeader.content.cloneNode(true));
-        popupContent.appendChild(popupTemplateContent.content.cloneNode(true))
-
+        popupContent.appendChild(popupTemplateContent.content.cloneNode(true));
         popupSlide.classList.add("popup__show");
         overlay.classList.add("active");
         bodyDontScroll.classList.add("body-scroll");
-
 
       })
     });
   };
 
   window.activateProjectsPopup(projectsSlide);
-
-
-
 
   document.body.addEventListener('keyup', function (e) {
     var key = e.keyCode;
@@ -141,14 +150,37 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("click", (e) => {
     let target = e.target;
     if (target.classList.contains("overlay")) {
-
       popupSlide.classList.remove("popup__show");
       overlay.classList.remove("active");
       bodyDontScroll.classList.remove("body-scroll");
-
     }
   })
 
+
+  // Страница "Publication", аккордеон
+  let panel = document.querySelectorAll('.publication-info__panel');
+  console.log(panel)
+  for (let i = 0; i < panel.length; i++) {
+    panel[i].addEventListener("click", function () {
+
+
+
+      let accordionTextBlock = this.nextElementSibling;
+      if (accordionTextBlock.style.maxHeight) {
+        accordionTextBlock.style.maxHeight = null;
+      } else {
+        accordionTextBlock.style.maxHeight = accordionTextBlock.scrollHeight + "px";
+      };
+
+    })
+  }
+  // let accordion = document.querySelectorAll(".publication-info__accordion");
+
+  // accordion.forEach(function(item) {
+  //     item.addEventListener ('click', function() {
+  //         this.classList.toggle('publication-info__accordion--active');
+  //     });
+  // });
 
   console.log("DOM fully loaded and parsed");
 })

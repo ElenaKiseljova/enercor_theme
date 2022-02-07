@@ -1,5 +1,7 @@
 <?php 
-  $references = get_field( 'references', 'option' );
+  $archive_projects_page_id = get_field( 'archive_projects', 'option' );
+
+  $references = get_field( 'references', $archive_projects_page_id );
 ?>
 <?php if ($references && !is_wp_error( $references )) : ?>
   <?php 
@@ -30,6 +32,8 @@
               $subtitle = $item['subtitle'];
               $link = $item['link'];
               $content = $item['content'];
+
+              $button_toggle = $item['button_toggle'];
             ?>
             <div class="reference__info">
               <?php if ($image && !empty($image) && !is_wp_error( $image )) : ?>
@@ -47,9 +51,9 @@
                       </p>
                     </div>
 
-                    <?php if ($link && !empty($link)) : ?>
-                      <a href="<?= $link; ?>" class="reference__about-link" target="_blank">
-                        <?= $link; ?>
+                    <?php if ($link && !empty($link['text']) && !empty($link['url'])) : ?>
+                      <a href="<?= $link['url']; ?>" class="reference__about-link" target="_blank">
+                        <?= $link['text']; ?>
                       </a>
                     <?php endif; ?>                    
                 </div>
@@ -57,7 +61,10 @@
                 <div class="reference__about-text">
                   <?= $content; ?>
                 </div>
-                <button class="reference__about-link reference__about-link--more" type="button">read more </button>
+                
+                <?php if ($button_toggle) : ?>
+                  <button class="reference__about-link reference__about-link--more" type="button">read more</button>
+                <?php endif; ?>                
               </div>
             </div>
           <?php endforeach; ?>            
