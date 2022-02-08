@@ -13,7 +13,7 @@
     <?= do_shortcode( '[contact-form-7 id="204" title="Contacts page"]' ); ?>
 
     <?php
-      get_template_part( 'template-parts/contacts/social' );
+      get_template_part( 'template-parts/social' );
     ?>
   </div>
 <?php endif; ?>

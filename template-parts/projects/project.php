@@ -1,38 +1,45 @@
 <?php 
   $id = get_the_ID();
   $services = get_the_terms( $id, 'services' );
-
+  
+  $title = get_the_title( $id );
   $subtitle = get_field( 'subtitle', $id );
   $icon = get_field( 'icon', $id );
+
+  $main = get_field( 'main', $id );
+                
+  if ($main && !is_wp_error( $main )) {
+    $image = $main['image'];
+  }
 ?>
 
 
 <div class="swiper-slide completed-projects--slide">
   <div class="completed-projects__slide">
-    <?php if (has_post_thumbnail(  )) : ?>
+    <?php if ($image) : ?>
       <div class="completed-projects__slide-img">
-        <?php the_post_thumbnail( 'project_archive' ); ?>
-      </div>                    
+        <img src="<?= $image['sizes']['project_archive']; ?>" alt="<?= strip_tags( $title ); ?>">
+      </div>        
     <?php endif; ?>
 
     <div class="completed-projects__slide-container">
       <div class="completed-projects__slide-wrap">
         <?php if ($icon) : ?>
-          <img class="completed-projects__slide-icon" src="<?= $icon; ?>" alt="<?= strip_tags(get_the_title(  )); ?>">
+          <img class="completed-projects__slide-icon" src="<?= $icon; ?>" alt="<?= strip_tags( $title ); ?>">
         <?php endif; ?>                      
 
-        <h6 class="completed-projects__slide-title"><?= get_the_title(  ); ?></h6>
+        <h6 class="completed-projects__slide-title"><?= $title; ?></h6>
       </div>
       <p class="completed-projects__slide-text">
         <?php if (!empty($services) && !is_wp_error( $services )) : ?>
-          <?php foreach ($services as $service) : ?>
+          <?php foreach ($services as $key => $service) : ?>
             <?php 
               $service_id = $service->term_id;
               $service_link = get_term_link( $service_id, 'services' ); 
             ?>
             <?php if (!is_wp_error( $service_link )) : ?>
               <a href="<?= $service_link; ?>">
-                <?= end($service) ? $service->name : ($service->name . ','); ?>
+                <?= (end($services) === $service) ? $service->name : ($service->name . ','); ?>
               </a>
             <?php endif; ?>                                           
           <?php endforeach; ?>
@@ -41,10 +48,10 @@
     </div>
   </div>
   <template class="popup__template-header">
-    <?php if (has_post_thumbnail( )) : ?>
+    <?php if ($image) : ?>
       <div class="completed-projects__slide-img">
-        <?php the_post_thumbnail( 'large' ); ?>
-      </div>                    
+        <img src="<?= $image['sizes']['large']; ?>" alt="<?= strip_tags( $title ); ?>">
+      </div>        
     <?php endif; ?>
 
     <div class="popup__header-wrapper">
@@ -73,7 +80,7 @@
           ?>
           <?php if (!is_wp_error( $service_link )) : ?>
             <a href="<?= $service_link; ?>">
-              <?= end($service) ? $service->name : ($service->name . ','); ?>
+              <?= (end($services) === $service)  ? $service->name : ($service->name . ','); ?>
             </a>
           <?php endif; ?>                                           
         <?php endforeach; ?>

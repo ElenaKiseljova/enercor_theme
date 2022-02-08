@@ -11,7 +11,7 @@
 <main class="main">
 
   <?php
-    get_template_part( 'template-parts/contacts/main' );
+    get_template_part( 'template-parts/main' );
   ?>
 
   <section class="contact">

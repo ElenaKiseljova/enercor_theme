@@ -28,13 +28,19 @@
                 $link = get_permalink( $id );  
                 $subtitle = get_field( 'subtitle', $id );
                 $excerpt = $project->post_excerpt;
+
+                $main = get_field( 'main', $id );
+                
+                if ($main && !is_wp_error( $main )) {
+                  $image = $main['image'];
+                }
               ?>
               <div class="swiper-slide selected__card">
                 <a href="<?= $link; ?>" class="selected__card-link">
                   <div class="selected__card-wrap">
                     <div class="selected__card-img">
-                      <?php if (has_post_thumbnail( $id )) : ?>
-                        <?= get_the_post_thumbnail( $id, 'project_archive' ); ?>
+                      <?php if ($image) : ?>
+                        <img src="<?= $image['sizes']['project_archive']; ?>" alt="<?= strip_tags( $title ); ?>">
                       <?php endif; ?>
                     </div>
 
@@ -68,7 +74,7 @@
                       <?php if (!is_wp_error( $service_link )) : ?>
                         <li class="selected__card-info-item">
                           <a href="<?= $service_link; ?>" class="selected__card-info-link">
-                            <?= end($service) ? $service->name : ($service->name . ','); ?>
+                            <?= (end($services) === $service)  ? $service->name : ($service->name . ','); ?>
                           </a>
                         </li> 
                       <?php endif; ?>                                           

@@ -160,7 +160,7 @@
           //'capabilities'      => 'post', // массив дополнительных прав для этого типа записи
           //'map_meta_cap'      => null, // Ставим true чтобы включить дефолтный обработчик специальных прав
           'hierarchical'        => false,
-          'supports'            => ['title', 'editor', 'thumbnail', 'page-attributes', 'custom-fields', 'excerpt' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
+          'supports'            => ['title', 'editor', 'page-attributes', 'custom-fields', 'excerpt' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
           'taxonomies'          => ['services'],
           'has_archive'         => true,
           'rewrite'             => true,
@@ -237,7 +237,7 @@
            'show_in_menu'          => true, // равен аргументу show_ui
           // 'show_tagcloud'         => true, // равен аргументу show_ui
           // 'show_in_quick_edit'    => null, // равен аргументу show_ui
-          'hierarchical'          => true,
+          'hierarchical'          => false,
       
           'rewrite'               => true,
           //'query_var'             => $taxonomy, // название параметра запроса
@@ -297,7 +297,21 @@
   =============================================== */
   add_filter( 'walker_nav_menu_start_el', 'enercor_filter_link_nav_menu', 10, 4 );
   function enercor_filter_link_nav_menu( $item_output, $item, $depth, $args ) {
-    $is_white_theme = is_post_type_archive( 'team' );
+    $is_black_menu = false;
+
+    if (is_post_type_archive( 'team' )) {
+      $archive_team_page_id = get_field( 'archive_team', 'option' );
+
+      $theme_color_mode_menu = get_field( 'theme_color_mode_menu', $archive_team_page_id );
+    } else if ( is_singular( 'team' ) ) {
+      $is_black_menu = true;
+    } else {
+      $theme_color_mode_menu = get_field( 'theme_color_mode_menu' );
+    }
+
+    if ($theme_color_mode_menu && $theme_color_mode_menu === 'black') {
+      $is_black_menu = true;
+    }
 
     // link attributes
 		$attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
@@ -307,7 +321,7 @@
     
     $class_link = '';
     if ($args->theme_location === 'top_menu') {
-      $class = $is_white_theme ? 'header__link header__link--black' : 'header__link';
+      $class = $is_black_menu ? 'header__link header__link--black' : 'header__link';
     }
     
     if ($args->theme_location === 'bottom_menu') {

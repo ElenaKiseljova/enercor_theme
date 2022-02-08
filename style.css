@@ -93,88 +93,60 @@ input[type=radio].visually-hidden {
 
 /* Popup project */
 
-.popup__header .completed-projects__slide-img {
-  width: 100%;
-  height: 130px;
-
-  overflow: hidden;
-}
-
-.popup__header .completed-projects__slide-img img {
-  width: 100%;
-  height: auto;
-
-  object-position: center;
-  object-fit: cover;
-}
-
 .popup__content-title *,
 .completed-projects__slide-text * {
   color: inherit;
 }
 
-/* Projects */
+/* Team slider */
 
-#international-project-ajax {
-  display: grid;
-
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto;
-
-  gap: 27px;
+.team-workers__slide p {
+  overflow-wrap: normal;
 }
 
-.completed-projects__btn--show-more.sending {
-  opacity: 0.7;
+/* News */
 
-  pointer-events: none;
+.contact__follow-navigation-list--vertical {
+  display: block;
 }
 
-#international-project-ajax .completed-projects--slide {
-  height: auto;
+.contact__follow-navigation-item--vertical:not(:last-child) {
+  margin-bottom: 7px;
 }
 
-@media screen and (max-width: 1390px) {
-  #international-project-ajax {
-    grid-template-columns: repeat(2, 1fr);
+/* Main [450 px] */
 
-    align-items: stretch;
-  }
-
-  #international-project-ajax .completed-projects__slide {
-    height: 100%;
-  }
-
-  #international-project-ajax .completed-projects__slide-img {
-    width: 100%;
-    height: 100%;
-  }
-
-  #international-project-ajax .completed-projects__slide-img img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-    object-position: center;
-  }
+.start-screen__contacts-btn {
+  flex-shrink: 0;
 }
 
-@media screen and (max-width: 990px) {
-  #international-project-ajax {
-    grid-template-columns: repeat(1, 1fr);
-  }
+.start-screen__contacts-img img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
 }
 
-@media screen and (max-width: 424px) {
-  #international-project-ajax .completed-projects__slide-wrap {
-    flex-direction: column;
+.start-screen__contacts-img::before {
+  content: '';
 
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
+  position: absolute;
 
-  #international-project-ajax  .completed-projects__slide-title {
-    margin-top: 15px;
-    margin-left: 0;
-  }
+  top: 0;
+  left: 0;
+
+  z-index: 1;
+
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(180deg, rgba(20, 20, 20, 0.77) 23.56%, rgba(255, 254, 254, 0) 91.17%, rgba(207, 98, 98, 0) 123.56%);
+  transform: rotate(180deg);
+}
+
+/* Single team */
+
+.main--team {
+  position: relative;
 }

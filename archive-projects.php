@@ -12,7 +12,7 @@
   <?php 
     get_template_part( 'template-parts/projects/main' );
 
-    get_template_part( 'template-parts/projects/stages' );
+    get_template_part( 'template-parts/stages' );
 
     get_template_part( 'template-parts/projects/phases' );
 

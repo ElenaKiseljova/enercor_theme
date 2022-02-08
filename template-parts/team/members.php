@@ -79,11 +79,11 @@
                                 <h3 class="team-workers__headline"><?= $expertise ; ?></h3>
 
                                 <?php 
-                                  $expertise = get_the_terms( get_the_ID(  ), 'expertise' ) ?? [];
+                                  $expertise_list = get_the_terms( get_the_ID(  ), 'expertise' ) ?? [];
                                 ?>
-                                <?php if (!empty($expertise)) : ?>
+                                <?php if (!empty($expertise_list)) : ?>
                                   <ul class="team-workers__list">
-                                    <?php foreach ($expertise as $key => $item) : ?>
+                                    <?php foreach ($expertise_list as $key => $item) : ?>
                                       <?php 
                                         $icon = get_field( 'icon', $item );
                                       ?>
@@ -93,7 +93,7 @@
                                         <?php endif; ?>
                                         
                                         <span class="team-workers__text">
-                                          <?= $item->name; ?>
+                                          <?= str_replace('\n', '<br>', $item->name); ?>
                                         </span>
                                       </li>
                                     <?php endforeach; ?>                                  

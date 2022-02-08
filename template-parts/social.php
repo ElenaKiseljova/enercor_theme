@@ -14,10 +14,10 @@
     
     <?php if ($list && !empty($list) && !is_wp_error( $list )) : ?>
       <div class="contact__follow-navigation">
-        <ul class="contact__follow-navigation-list">
+        <ul class="contact__follow-navigation-list <?= is_page_template( 'page-news.php' ) ? 'contact__follow-navigation-list--vertical' : ''; ?>">
           <?php foreach ($list as $key => $value) : ?>
             <?php if (!empty($value['title']) && !empty($value['link'])) : ?>
-              <li class="contact__follow-navigation-item">
+              <li class="contact__follow-navigation-item <?= is_page_template( 'page-news.php' ) ? 'contact__follow-navigation-item--vertical' : ''; ?>">
                 <a href="<?= $value['link']; ?>" class="contact__follow-navigation-link">
                   <span class="contact__follow-navigation-link--decor">
                     <svg class="contact__follow-navigation-link--decor-icon"
