@@ -2147,7 +2147,7 @@ body.lock {
   right: 1px;
   width: 69.5%;
   height: 847px;
-  background: url("../../../img/enercor-header-decor.svg");
+  background: url("../img/enercor-header-decor.svg");
   z-index: -1;
 }
 @media (max-width: 1200px) {
@@ -2999,7 +2999,7 @@ body.lock {
 }
 .team-start-screen::before {
   content: "";
-  background-image: url(../../../img/team-bg.svg);
+  background-image: url(../img/team-bg.svg);
   background-repeat: no-repeat;
   display: block;
   width: 100%;
@@ -4125,7 +4125,7 @@ body.lock {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-image: url(../../../img/publication-screen-bg.jpg);
+  background-image: url(../img/publication-screen-bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -4726,7 +4726,7 @@ body.lock {
 .news-info::before {
   content: "";
   display: block;
-  background-image: url(../../../img/news-info-bg-1.svg);
+  background-image: url(../img/news-info-bg-1.svg);
   background-repeat: no-repeat;
   position: absolute;
   top: 0;
@@ -6315,7 +6315,7 @@ body.lock {
   -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  background: url("../../../img/bg-stages.svg") center center/cover no-repeat;
+  background: url("../img/bg-stages.svg") center center/cover no-repeat;
   width: 76.1%;
   height: 822px;
   z-index: -1;
@@ -7121,7 +7121,7 @@ body.lock {
   -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  background: url("../../../img/bg-project-page.svg") center center no-repeat;
+  background: url("../img/bg-project-page.svg") center center no-repeat;
   width: 100%;
   height: 1171px;
 }

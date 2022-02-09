@@ -166,6 +166,46 @@
           'rewrite'             => true,
           'query_var'           => true,
         ] );
+
+        // Публикации
+        register_post_type( 'publications', [
+          'label'  => null,
+          'labels' => [
+            'name'               => 'Публикации', // основное название для типа записи
+            'singular_name'      => 'Публикация', // название для одной записи этого типа
+            'add_new'            => 'Добавить публикацию', // для добавления новой записи
+            'add_new_item'       => 'Добавление публикации', // заголовка у вновь создаваемой записи в админ-панели.
+            'edit_item'          => 'Редактирование публикации', // для редактирования типа записи
+            'new_item'           => 'Новая публикация', // текст новой записи
+            'view_item'          => 'Показать публикацию', // для просмотра записи этого типа.
+            'search_items'       => 'Искать публикацию', // для поиска по этим типам записи
+            'not_found'          => 'Публикация не найдена', // если в результате поиска ничего не было найдено
+            'not_found_in_trash' => 'Публикация не найдена в корзине', // если не было найдено в корзине
+            'parent_item_colon'  => '', // для родителей (у древовидных типов)
+            'menu_name'          => 'Публикации', // название меню
+          ],
+          'description'         => 'Это наши публикации',
+          'public'              => false,
+          'publicly_queryable'  => false, // зависит от public
+          'exclude_from_search' => false, // зависит от public
+          'show_ui'             => true, // зависит от public
+          'show_in_nav_menus'   => true, // зависит от public
+          'show_in_menu'        => true, // показывать ли в меню адмнки
+          'show_in_admin_bar'   => true, // зависит от show_in_menu
+          'show_in_rest'        => true, // добавить в REST API. C WP 4.7
+          'rest_base'           => null, // $post_type. C WP 4.7
+          'menu_position'       => 19,
+          'menu_icon'           => 'dashicons-media-document',
+          //'capability_type'   => 'post',
+          //'capabilities'      => 'post', // массив дополнительных прав для этого типа записи
+          //'map_meta_cap'      => null, // Ставим true чтобы включить дефолтный обработчик специальных прав
+          'hierarchical'        => false,
+          'supports'            => ['title', 'editor' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
+          'taxonomies'          => ['publications-category'],
+          'has_archive'         => true,
+          'rewrite'             => true,
+          'query_var'           => true,
+        ] );
       }   
       
       register_custom_post_types();
@@ -286,6 +326,43 @@
           // '_builtin'              => false,
           //'update_count_callback' => '_update_post_term_count',
         ] );
+
+        // Категории публикаций
+        register_taxonomy( 'publications-category', [ 'publications' ], [
+          'label'                 => '', // определяется параметром $labels->name
+          'labels'                => [
+            'name'              => 'Категории',
+            'singular_name'     => 'Категория',
+            'search_items'      => 'Найти категорию',
+            'all_items'         => 'Все категории',
+            'view_item '        => 'Посмотреть категорию',
+            'parent_item'       => 'Родительская услуга',
+            'parent_item_colon' => 'Родительская категория:',
+            'edit_item'         => 'Редактировать категорию',
+            'update_item'       => 'Обновить категорию',
+            'add_new_item'      => 'Добавить новую категорию',
+            'new_item_name'     => 'Название новой категории',
+            'menu_name'         => 'Категории',
+          ],
+          'description'           => 'Категории публикаций', // описание таксономии
+          'public'                => true,
+          'publicly_queryable'    => true, // равен аргументу public
+          // 'show_in_nav_menus'     => true, // равен аргументу public
+          'show_ui'               => true, // равен аргументу public
+           'show_in_menu'          => true, // равен аргументу show_ui
+          // 'show_tagcloud'         => true, // равен аргументу show_ui
+          // 'show_in_quick_edit'    => null, // равен аргументу show_ui
+          'hierarchical'          => true,
+          'rewrite'               => true,
+          //'query_var'             => $taxonomy, // название параметра запроса
+          // 'capabilities'          => array(),
+          // 'meta_box_cb'           => null, // html метабокса. callback: `post_categories_meta_box` или `post_tags_meta_box`. false — метабокс отключен.
+          // 'show_admin_column'     => false, // авто-создание колонки таксы в таблице ассоциированного типа записи. (с версии 3.5)
+          'show_in_rest'          => true, // добавить в REST API
+          // 'rest_base'             => null, // $taxonomy
+          // '_builtin'              => false,
+          //'update_count_callback' => '_update_post_term_count',
+        ] );
       }   
     
       register_custom_taxonomy();
@@ -384,8 +461,8 @@
   function mindbase_create_acf_pages() {
     if(function_exists('acf_add_options_page')) {
       acf_add_options_page(array(
-        'page_title' 	=> 'Pages for Archives',
-        'menu_title'	=> 'Pages for Archives',
+        'page_title' 	=> 'Страницы для Архивов',
+        'menu_title'	=> 'Страницы для Архивов',
         'menu_slug' 	=> 'pages-for-archives',
         'capability'	=> 'edit_posts',
         'icon_url' => 'dashicons-archive',
