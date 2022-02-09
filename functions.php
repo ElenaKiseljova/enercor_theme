@@ -331,7 +331,7 @@
         register_taxonomy( 'publications-category', [ 'publications' ], [
           'label'                 => '', // определяется параметром $labels->name
           'labels'                => [
-            'name'              => 'Категории',
+            'name'              => 'Категории публикаций',
             'singular_name'     => 'Категория',
             'search_items'      => 'Найти категорию',
             'all_items'         => 'Все категории',
@@ -342,7 +342,7 @@
             'update_item'       => 'Обновить категорию',
             'add_new_item'      => 'Добавить новую категорию',
             'new_item_name'     => 'Название новой категории',
-            'menu_name'         => 'Категории',
+            'menu_name'         => 'Категории публикаций',
           ],
           'description'           => 'Категории публикаций', // описание таксономии
           'public'                => true,
@@ -588,5 +588,106 @@
         </button>
       <?php
     }
+  }
+
+  /* ==============================================
+  ********  //Публикации конкретного автора
+  =============================================== */
+
+  /*
+    * $type : string (html, data)
+    * data - массив категорий публикаций и кол-вом публикаций в ней конкретного автора
+    * html - разметка списка публикаций всех (или указанной категории) для конкретного автора
+  */
+  function get_publications ($member_id = null, $term_id = null, $type = 'html') {
+    $taxonomy = 'publications-category';
+
+    $args = [
+      'post_type' => 'publications',
+      'post_status' => 'publish',
+      'order' => 'ASC',
+      'orderby' => 'menu_order',
+      'posts_per_page' => -1,
+    ];
+
+    if ($member_id) {
+      $args['meta_query'] = [
+        [
+          'key' => 'author',
+          'value' => $member_id,
+          'compare' => 'LIKE'
+        ],
+      ];
+    }
+
+    if ($term_id) {
+      $args['tax_query'] = [
+        [
+          'taxonomy' => $taxonomy,
+          'field' => 'term_id',
+          'terms' => $term_id,
+        ],
+      ];
+    }    
+
+    $query = new WP_Query( $args ); 
+
+    if ($type === 'data') {
+      $data = [
+        'terms' => [],
+        'publications_count' => [],
+      ];
+
+      if ($term_id) {
+        $term = get_term_by( 'id', $term_id, $taxonomy );
+
+        if ($term && !empty($term) && !is_wp_error( $term )) {
+          $data['terms'][] = $term;
+
+          $data['publications_count'][] = $query->post_count;
+        }  
+        
+        return $data;
+      }
+    }
+
+    if ( $query->have_posts() ) {
+
+      while ( $query->have_posts() ) {
+        $query->the_post();
+        
+        if ($type === 'html') {
+          get_template_part( 'template-parts/publications-category/publication' );
+        } 
+        
+        if ($type === 'data') {
+          $term_list = wp_get_post_terms( get_the_ID(  ), 'publications-category' );
+
+          if ($term_list && !empty($term_list) && !is_wp_error( $term_list )) {
+            foreach ($term_list as $key => $term_item) {
+              if (in_array( $term_item, $data['terms'] )) {
+                $term_key = array_search( $term_item, $data['terms'] );
+                $data['publications_count'][$term_key] += 1;
+              } else {
+                array_push( $data['terms'], $term_item);
+
+                $term_key = array_search( $term_item, $data['terms'] );
+                $data['publications_count'][$term_key] = 1;
+              }
+            }
+          }         
+        }             
+      }    
+
+      wp_reset_postdata();
+    } else {
+      if ($type === 'html') {
+        echo wpautop( 'Publications not found.' );
+      }      
+    }    
+
+    if ($type === 'data') {
+      return $data;
+    }    
   }
 ?>
