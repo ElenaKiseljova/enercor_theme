@@ -16,6 +16,7 @@
     <div class="container header__container">      
       <?php 
         $is_color_logo = false;
+        $theme_color_mode_logo = false;
 
         if (is_post_type_archive( 'team' )) {
           $archive_team_page_id = get_field( 'archive_team', 'option' );

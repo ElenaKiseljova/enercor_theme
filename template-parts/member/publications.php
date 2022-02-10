@@ -7,7 +7,7 @@
     $publications_title = $publications['title'];
   }
 
-  $publications_arr = get_publications($member_id, null, 'data');
+  $publications_arr = enercor_get_publications($member_id, null, 'data');
 
   if ($publications_arr && is_array($publications_arr) && !is_wp_error( $publications_arr )) {
     $publications_terms = $publications_arr['terms'] ?? [];

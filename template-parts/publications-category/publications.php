@@ -11,7 +11,7 @@
 
       if ($member_id) {        
 
-        get_publications($member_id, $term_id, 'html');
+        enercor_get_publications($member_id, $term_id, 'html');
         
       } else {
         if ( have_posts() ){

@@ -375,6 +375,7 @@
   add_filter( 'walker_nav_menu_start_el', 'enercor_filter_link_nav_menu', 10, 4 );
   function enercor_filter_link_nav_menu( $item_output, $item, $depth, $args ) {
     $is_black_menu = false;
+    $theme_color_mode_menu = false;
 
     if (is_post_type_archive( 'team' )) {
       $archive_team_page_id = get_field( 'archive_team', 'option' );
@@ -599,7 +600,7 @@
     * data - массив категорий публикаций и кол-вом публикаций в ней конкретного автора
     * html - разметка списка публикаций всех (или указанной категории) для конкретного автора
   */
-  function get_publications ($member_id = null, $term_id = null, $type = 'html') {
+  function enercor_get_publications ($member_id = null, $term_id = null, $type = 'html') {
     $taxonomy = 'publications-category';
 
     $args = [
@@ -689,5 +690,13 @@
     if ($type === 'data') {
       return $data;
     }    
+  }
+
+  /* ==============================================
+  ********  //Вставка переносов на новую строку в именах таксономий
+  =============================================== */
+
+  function enercor_insert_br_in_term_mame ( $term_name = '') {
+    return str_replace('\n', '<br>', $term_name);
   }
 ?>

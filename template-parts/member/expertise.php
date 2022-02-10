@@ -19,7 +19,7 @@
               <?php endif; ?>
               
               <span class="expertise__text">
-                <?= str_replace('\n', '<br>', $item->name); ?>
+                <?= enercor_insert_br_in_term_mame( $item->name ); ?>
               </span>
             </li>
           <?php endforeach; ?>                                  

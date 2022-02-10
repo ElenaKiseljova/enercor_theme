@@ -10,7 +10,7 @@
 
 <main class="main">
   <?php 
-    get_template_part( 'template-parts/projects/main' );
+    get_template_part( 'template-parts/main', 'circles' );
 
     get_template_part( 'template-parts/stages' );
 

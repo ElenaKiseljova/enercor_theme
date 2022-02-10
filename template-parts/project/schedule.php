@@ -2,26 +2,33 @@
   $schedule = get_field( 'schedule' );
 ?>
 <?php if ($schedule && !empty($schedule) && !is_wp_error( $schedule )) : ?>
-  <section class="month">
-    <div class="container">
-      <div class="month__wrapper">
-        <?php foreach ($schedule as $key => $item) : ?>
-          <?php 
-            $title = $item['title'];  
-            $indigo = $item['indigo'];  
+  <?php 
+    $toggle_visibility = $schedule['toggle_visibility'];  
 
-            $content = $item['content'];  
-          ?>
-          <div class="month__wrap">
-            <p class="month__title <?= $indigo ? 'month__title--active' : ''; ?>">
-              <?= $title; ?>
-            </p>
-            <div class="month__list-wrapper">
-              <?= $content; ?>
+    $schedule_list = $schedule['list'];  
+  ?>
+  <?php if ($toggle_visibility && $schedule_list && !empty($schedule_list)) : ?>
+    <section class="month">
+      <div class="container">
+        <div class="month__wrapper">
+          <?php foreach ($schedule_list as $key => $item) : ?>
+            <?php 
+              $title = $item['title'];  
+              $indigo = $item['indigo'];  
+
+              $content = $item['content'];  
+            ?>
+            <div class="month__wrap">
+              <p class="month__title <?= $indigo ? 'month__title--active' : ''; ?>">
+                <?= $title; ?>
+              </p>
+              <div class="month__list-wrapper">
+                <?= $content; ?>
+              </div>
             </div>
-          </div>
-        <?php endforeach; ?>        
+          <?php endforeach; ?>        
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  <?php endif; ?>  
 <?php endif; ?>
