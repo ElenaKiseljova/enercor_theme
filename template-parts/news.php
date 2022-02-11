@@ -23,7 +23,14 @@
         <div class="publication-info__wrapper <?= $is_vacancies ? 'publication-info__wrapper--vacancies' : ''; ?>">
 
           <?php 
-            get_template_part( 'template-parts/publications-category/publication' );
+            $vacancies = get_field( 'vacancies' );
+
+            if ($vacancies && !empty($vacancies) && !is_wp_error( $vacancies )) {
+              global $vacancy;
+              foreach ($vacancies as $key => $vacancy) {
+                get_template_part( 'template-parts/publications-category/publication' );
+              }
+            }            
           ?>      
 
         </div>

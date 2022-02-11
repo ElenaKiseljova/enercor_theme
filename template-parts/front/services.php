@@ -1,13 +1,9 @@
 <?php 
-  $services = get_field( 'services' );
-?>
-<?php if ($services && !is_wp_error( $services )) : ?>
-  <?php 
-    $title = $services['title'];
-    $content = $services['content'];
+    $title = get_sub_field('title');
+    $content = get_sub_field('content');
 
-    $title_list = $services['title_list'];
-    $list = $services['list'];
+    $title_list = get_sub_field('title_list');
+    $list = get_sub_field('list');
   ?>
   <section class="services" id="services">
     <div class="container">
@@ -41,4 +37,3 @@
       <?php endif; ?>     
     </div>
   </section>
-<?php endif; ?>

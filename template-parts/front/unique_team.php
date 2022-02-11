@@ -1,10 +1,6 @@
 <?php 
-  $unique_team = get_field( 'unique_team' );
-?>
-<?php if ($unique_team && !is_wp_error( $unique_team )) : ?>
-  <?php 
-    $title = $unique_team['title'];
-    $content = $unique_team['content'];
+    $title = get_sub_field('title');
+    $content = get_sub_field('content');
   ?>
   <section class="team" id="team">
     <div class="container">
@@ -18,5 +14,4 @@
         </div>
       <?php endif; ?>
     </div>
-</section>
-<?php endif; ?>
+  </section>

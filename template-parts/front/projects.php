@@ -1,17 +1,13 @@
 <?php 
-  $projects = get_field( 'projects' );
-?>
-<?php if ($projects && !is_wp_error( $projects )) : ?>
-  <?php 
-    $image = $projects['image'];
-    $color = $projects['color'];
+    $image = get_sub_field('image');
+    $color = get_sub_field('color');
     
-    $title = $projects['title'];
-    $subtitle = $projects['subtitle'];
-    $text = $projects['text'];
+    $title = get_sub_field('title');
+    $subtitle = get_sub_field('subtitle');
+    $text = get_sub_field('text');
 
-    $button_all = $projects['button_all'];
-    $button_ex = $projects['button_ex'];
+    $button_all = get_sub_field('button_all');
+    $button_ex = get_sub_field('button_ex');
   ?>
 
   <section class="projects" id="projects" 
@@ -75,4 +71,3 @@
       </div>
     </div>
   </section>
-<?php endif; ?>

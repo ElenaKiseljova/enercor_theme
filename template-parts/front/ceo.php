@@ -1,12 +1,8 @@
 <?php 
-  $ceo = get_field( 'ceo' );
-?>
-<?php if ($ceo && !is_wp_error( $ceo )) : ?>
-  <?php 
-    $member = $ceo['member'];
-    $button_profile = $ceo['button_profile'];
-    $button_team = $ceo['button_team'];
-    $text_bg = $ceo['text_bg'];
+    $member = get_sub_field('member');
+    $button_profile = get_sub_field('button_profile');
+    $button_team = get_sub_field('button_team');
+    $text_bg = get_sub_field('text_bg');
   ?>
   
   <section class="ceo" id="ceo">
@@ -88,4 +84,3 @@
       <?php endif; ?>      
     </div>
   </section>
-<?php endif; ?>

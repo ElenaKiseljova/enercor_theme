@@ -5,7 +5,7 @@
   $image = get_sub_field( 'image' );  
 ?>
 
-<section class="exertise">
+<section class="exertise" id="exertise">
   <?php if ($image && !empty($image) && !is_wp_error( $image )) : ?>
     <img src="<?= $image['sizes']['main_bg']; ?>" class="exertise__img" alt="exertise bg img">
   <?php endif; ?>

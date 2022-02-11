@@ -1,14 +1,24 @@
 <?php 
+  global $vacancy;
+
+  if ($vacancy && !empty($vacancy) && !is_wp_error( $vacancy )) {
+    $title = $vacancy['title'] ?? '';
+    $count = $vacancy['count'] ?? 1;
+    $content = $vacancy['content'] ?? '';
+  }
+
   $is_vacancies = is_page_template( 'page-vacancies.php' );  
 
   $subtitle = get_field( 'subtitle' );
+
+  
 ?>
 <div class="publication-info__accordion">
   <div class="publication-info__panel <?= $is_vacancies ? 'publication-info__panel--vacancies' : ''; ?>">
-    <p class="publication-info__date <?= $is_vacancies ? 'publication-info__date--vacancies' : ''; ?>"><?= get_the_date( 'd.m.Y' ); ?></p>
+    <p class="publication-info__date <?= $is_vacancies ? 'publication-info__date--vacancies' : ''; ?>"><?= $vacancy ? ('vacancies: ' . $count) : get_the_date( 'd.m.Y' ); ?></p>
     <div class="publication-info__name <?= $is_vacancies ? 'publication-info__name--vacancies' : ''; ?>">
       <h2 class="publication-info__title <?= $is_vacancies ? 'publication-info__title--vacancies' : ''; ?>">
-        <?= get_the_title(); ?>
+        <?= $vacancy ? $title : get_the_title(); ?>
       </h2>
       <?php if ($subtitle && !empty($subtitle)) : ?>
         <p class="publication-info__description">
@@ -19,7 +29,7 @@
   </div>
   <div class="publication-info__text-block">
     <div class="publication-info__text <?= $is_vacancies ? 'publication-info__text--vacancies' : ''; ?>">
-      <?= get_the_content(  ); ?>
+      <?= $vacancy ? $content : get_the_content(  ); ?>
     </div>
   </div>
   <button class="publication-info__btn <?= $is_vacancies ? 'publication-info__btn--vacancies' : ''; ?>">

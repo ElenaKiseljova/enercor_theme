@@ -1,4 +1,6 @@
 <?php 
+  $is_enercor = is_page_template( 'page-enercor.php' );
+
   $main = get_field( 'main' );
 ?>
 <?php if ($main && !is_wp_error( $main )) : ?>
@@ -11,7 +13,7 @@
     $text_bg = $main['text_bg'];
   ?>
   
-  <section class="start-screen js-start-screen ">
+  <section class="start-screen <?= $is_enercor ? 'enercor-start-screen' : ''; ?> js-start-screen ">
     <?php if ($image && !empty($image)) : ?>
       <img class="start-screen__img" src="<?= $image['sizes']['main_bg']; ?>" alt="<?= bloginfo( 'name' ); ?>">
     <?php endif; ?>

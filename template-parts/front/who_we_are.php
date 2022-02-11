@@ -1,12 +1,8 @@
 <?php 
-  $who_we_are = get_field( 'who_we_are' );
-?>
-<?php if ($who_we_are && !is_wp_error( $who_we_are )) : ?>
-  <?php 
-    $title = $who_we_are['title'];
-    $list = $who_we_are['list'];
-    $advantages = $who_we_are['advantages'];
-    $button = $who_we_are['button'];
+    $title = get_sub_field('title');
+    $list = get_sub_field('list');
+    $advantages = get_sub_field('advantages');
+    $button = get_sub_field('button');
   ?>
   <section class="who" id=""who>
     <div class="container">
@@ -58,4 +54,3 @@
       <?php endif; ?> 
     </div>
   </section>
-<?php endif; ?>

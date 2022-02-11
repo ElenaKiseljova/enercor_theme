@@ -1,4 +1,5 @@
 <?php 
+  $member_id = null;
   $term = get_queried_object();
 
   if ( isset($term->taxonomy) ) {

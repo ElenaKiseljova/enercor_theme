@@ -72,15 +72,15 @@
     </div>
 
     <?php if ($achievements && !empty($achievements) && !is_wp_error( $achievements )) : ?>
-    <?php endif; ?>
-    <ul class="about__numbers">
-      <?php foreach ($achievements as $key => $achievement) : ?>
-        <li class="about__numbers-item">
-          <p class="about__number"><?= $achievement['value']; ?></p>
-          <h4 class="about__number-desc"><?= $achievement['title']; ?></h4>
-        </li>
-      <?php endforeach; ?>
-    </ul>
+      <ul class="about__numbers">
+        <?php foreach ($achievements as $key => $achievement) : ?>
+          <li class="about__numbers-item">
+            <p class="about__number"><?= $achievement['value']; ?></p>
+            <h4 class="about__number-desc"><?= $achievement['title']; ?></h4>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+    <?php endif; ?>    
 
     <?php if (has_post_thumbnail(  )) : ?>
       <div class="about__img">

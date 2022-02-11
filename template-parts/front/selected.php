@@ -1,12 +1,8 @@
 <?php 
-  $selected = get_field( 'selected' );
-?>
-<?php if ($selected && !is_wp_error( $selected )) : ?>
-  <?php 
-    $title = $selected['title'];
-    $subtitle = $selected['subtitle'];
-    $projects = $selected['projects'];
-    $button = $selected['button'];
+    $title = get_sub_field('title');
+    $subtitle = get_sub_field('subtitle');
+    $projects = get_sub_field('projects');
+    $button = get_sub_field('button');
   ?>
   <section class="selected">
     <div class="container">
@@ -111,4 +107,3 @@
       <?php endif; ?>        
     </div>
   </section>
-<?php endif; ?>
