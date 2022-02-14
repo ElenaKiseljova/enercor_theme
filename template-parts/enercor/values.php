@@ -16,7 +16,7 @@
   <?php if ($list && !empty($list) && !is_wp_error( $list )) : ?>
     <ul class="mission__circle">
       <?php foreach ($list as $key => $item) : ?>
-        <li class="mission__circle-item mission__circle-item--animate-1">
+        <li class="mission__circle-item">
             <?= $item['text']; ?>
         </li>
       <?php endforeach; ?>

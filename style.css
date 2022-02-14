@@ -3,7 +3,7 @@ Theme Name: Enercor
 Author: Webnauts
 Author URI: https://webnauts.pro/
 Description: Theme for Enercor site.
-Version: 1.7
+Version: 2.0
 Text Domain: enercor
 */
 
@@ -97,118 +97,58 @@ input[type=radio].visually-hidden {
   overflow-wrap: normal;
 }
 
-/* Team Single */
-.about__img {
-  max-width: calc(703 / 1440 * 100%);
+/* Project */
+
+.month>.container:before,
+.month>.container:after {
+  display: none;
 }
 
-/* Vacancies */
-
-.news-info {
-  min-height: 774px;
-
-  padding: 106px 0 164px;
+.month {
+  padding-bottom: 133px;
 }
 
-.news-info__wrapper {
-  width: calc(1196 / 1440 * 100%);
-  
-  margin: 0 auto;
-  
-  padding: 0;
-}
-
-.publication-info__wrapper--vacancies {
-  width: calc(1330 / 1440 * 100vw);
-
-  margin: 0 auto;
-
-  padding: 0;
-}
-
-.publication-info__accordion {
-  transition: none!important;
-}
-
-.publication-info__panel--vacancies {
+.month__wrap {
   position: relative;
-
-  min-height: 110px;
-
-  padding-left: 70px;
-
-  align-items: center;
 }
 
-.publication-info__name--vacancies {
-  flex-grow: 1;
+.month__wrap:first-of-type {
+  padding-top: 92px;
 }
 
-.publication-info__date--vacancies {
-  width: 220px;
+.month__wrap:first-of-type::before,
+.month__wrap:last-of-type:after {
+  content: "";
+  position: absolute;
 
-  margin: 0;
-  padding-right: 37px;  
+  width: 50vw;
+  height: 100%;
+
+  border: 1px solid #0f5576;
 }
 
-.publication-info__title--vacancies {
-  margin: 0;
+.month__wrap:first-of-type::before {  
+  top: 0;
+  left: 0;
 
-  text-align: center;
-
-  color: #0F5576;
+  margin-left: calc(50% - 50vw);
+  
+  border-left: none;
+  border-bottom: none;
+  border-top-right-radius: 123px;
 }
 
-.publication-info__btn--vacancies {
-  bottom: 50%;
-  transform: translateY(50%);
+.month__wrap:last-of-type {
+  padding-bottom: 109px;
 }
 
-.publication-info__accordion.active .publication-info__btn--vacancies {
-  bottom: 30px;
-  transform: translateY(0);
-}
+.month__wrap:last-of-type:after {
+  bottom: 0;
+  right: 0;
 
-@media screen and (max-width: 1200px) {
-  .publication-info__panel--vacancies {
-    padding-left: 20px;
-  }
+  margin-right: calc(50% - 50vw);
 
-  .publication-info__date--vacancies {
-    width: 180px;
-
-    padding-right: 10px;  
-  }  
-}
-
-@media screen and (max-width: 1000px) {
-  .publication-info__panel--vacancies {
-    min-height: 155px;
-
-    padding-bottom: 80px;
-    padding-right: 20px;
-  }
-
-  .publication-info__accordion.active .publication-info__panel--vacancies {
-    padding-bottom: 80px;
-  }
-
-  .publication-info__accordion.active .publication-info__btn--vacancies {
-    bottom: 15px;
-  }  
-
-  .publication-info__date--vacancies {
-    flex-shrink: 0;
-
-    width: auto; 
-  }
-
-  .publication-info__btn--vacancies {
-    bottom: 15px;
-    transform: translateY(0);
-  }
-
-  .publication-info__title--vacancies {
-    text-align: right;
-  }
+  border-right: none;
+  border-top: none;
+  border-bottom-left-radius: 123px;
 }

@@ -7,7 +7,7 @@
   <?php
     get_template_part( 'template-parts/main' );
 
-    get_template_part( 'template-parts/publications-category/publications' );
+    get_template_part( 'template-parts/publications' );
   ?>
 
 </main>

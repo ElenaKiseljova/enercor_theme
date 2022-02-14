@@ -194,5 +194,29 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+
+
+
+
+  // my version accordion
+  let accordion = document.querySelectorAll(".vacancies__accordion");
+
+  accordion.forEach((item)=>{
+    item.addEventListener("click", ()=>{
+      const accordionContent = item.querySelector(".vacancies__accordion-content"),
+            accordionBtn = item.querySelector(".vacancies__wrapper-btn"),
+            accordionActive = document.querySelector(".vacancies__accordion");
+
+      accordionContent.classList.toggle("show-content");
+      accordionBtn.classList.toggle("hide-btn");
+      accordionActive.classList.toggle("accordion--active");
+
+      if(accordionContent.style.maxHeight){
+        accordionContent.style.maxHeight = null;
+      }else{
+        accordionContent.style.maxHeight = accordionContent.scrollHeight + "px"
+      }
+    })
+  })
   console.log("DOM fully loaded and parsed");
 })

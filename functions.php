@@ -658,7 +658,7 @@
         $query->the_post();
         
         if ($type === 'html') {
-          get_template_part( 'template-parts/publications-category/publication' );
+          get_template_part( 'template-parts/accordion' );
         } 
         
         if ($type === 'data') {
