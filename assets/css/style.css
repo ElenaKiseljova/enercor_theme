@@ -451,20 +451,6 @@ img {
   vertical-align: top;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Plain-Light", sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 22px;
-  letter-spacing: 0.02em;
-}
-
 body {
   cursor: default;
 }
@@ -3565,6 +3551,7 @@ body.lock {
   background: url("../img/popup-bg.svg") bottom center/cover no-repeat;
   width: 761px;
   height: 209px;
+  z-index: 0;
 }
 @media (max-width: 576px) {
   .popup__content:after {
@@ -8254,8 +8241,7 @@ body.lock {
 
 .month {
   padding-top: 198px;
-  padding-bottom: 200px;
-  position: relative;
+  padding-bottom: 133px;
 }
 @media (max-width: 992px) {
   .month {
@@ -8279,6 +8265,7 @@ body.lock {
   }
 }
 .month > .container:before {
+  display: none;
   content: "";
   position: absolute;
   top: -94px;
@@ -8296,6 +8283,7 @@ body.lock {
   }
 }
 .month > .container:after {
+  display: none;
   content: "";
   position: absolute;
   bottom: -102px;
@@ -8331,6 +8319,7 @@ body.lock {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  position: relative;
   margin-bottom: 58px;
 }
 @media (max-width: 768px) {
@@ -8342,8 +8331,65 @@ body.lock {
     margin-bottom: 48px;
   }
 }
+@media (max-width: 576px) {
+  .month__wrap {
+    margin-bottom: 24px;
+  }
+}
 .month__wrap:last-child {
   margin-bottom: 0;
+}
+.month__wrap:first-of-type {
+  padding-top: 92px;
+}
+@media (max-width: 768px) {
+  .month__wrap:first-of-type {
+    padding-top: 0;
+  }
+}
+.month__wrap:first-of-type::before {
+  content: "";
+  position: absolute;
+  width: 50vw;
+  height: 100%;
+  top: 0;
+  left: 0;
+  margin-left: calc(50% - 50vw);
+  border-top-right-radius: 123px;
+  border: 1px solid #0f5576;
+  border-left: none;
+  border-bottom: none;
+}
+@media (max-width: 768px) {
+  .month__wrap:first-of-type::before {
+    display: none;
+  }
+}
+.month__wrap:last-of-type {
+  padding-bottom: 109px;
+}
+@media (max-width: 768px) {
+  .month__wrap:last-of-type {
+    padding-bottom: 0;
+  }
+}
+.month__wrap:last-of-type::after {
+  content: "";
+  position: absolute;
+  width: 50vw;
+  height: 100%;
+  bottom: 0;
+  right: 0;
+  margin-right: calc(50% - 50vw);
+  border-bottom-left-radius: 123px;
+  border: 1px solid #0f5576;
+  border-right: none;
+  border-top: none;
+}
+@media (max-width: 768px) {
+  .month__wrap:last-of-type::after {
+    display: none;
+  }
 }
 .month__wrap:first-child > .month__title:after {
   display: none;
@@ -8381,6 +8427,7 @@ body.lock {
 @media (max-width: 768px) {
   .month__title {
     text-align: center;
+    margin-bottom: 12px;
   }
 }
 .month__title::after {
@@ -8408,7 +8455,15 @@ body.lock {
           flex: 1 1 50%;
   margin-left: 227px;
 }
-.month__list-wrapper > p {
+@media (max-width: 768px) {
+  .month__list-wrapper {
+    width: 100%;
+    max-width: 432px;
+    margin-left: 0;
+    margin: 0 auto;
+  }
+}
+.month__list-wrapper > p, .month__list-wrapper h1, .month__list-wrapper h2, .month__list-wrapper h3, .month__list-wrapper h4, .month__list-wrapper h5, .month__list-wrapper h6, .month__list-wrapper ul, .month__list-wrapper ol {
   font-family: Plain, sans-serif;
   font-size: 28px;
   font-style: normal;
@@ -8418,9 +8473,40 @@ body.lock {
   text-align: left;
   width: 100%;
   max-width: 432px;
+  word-wrap: anywhere;
 }
 .month__list-wrapper > ul > li {
   list-style-type: disc;
+  font-family: "Plain", sans-serif;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+  text-align: left;
+}
+@media (max-width: 992px) {
+  .month__list-wrapper > ul > li {
+    font-size: 22px;
+    line-height: 26px;
+  }
+}
+@media (max-width: 768px) {
+  .month__list-wrapper > ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+.month__list-wrapper > ul > li::marker {
+  font-size: 16px;
+}
+.month__list-wrapper > ol > li {
+  list-style-type: decimal;
   font-family: "Plain", sans-serif;
   font-size: 28px;
   font-style: normal;
@@ -8432,19 +8518,18 @@ body.lock {
   max-width: 432px;
 }
 @media (max-width: 992px) {
-  .month__list-wrapper > ul > li {
+  .month__list-wrapper > ol > li {
     font-size: 22px;
     line-height: 26px;
   }
 }
 @media (max-width: 768px) {
-  .month__list-wrapper > ul > li {
+  .month__list-wrapper > ol > li {
     max-width: 320px;
   }
 }
 @media (max-width: 768px) {
-  .month__list-wrapper > ul {
-    margin-left: 0;
+  .month__list-wrapper > ol {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -8452,12 +8537,9 @@ body.lock {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
   }
 }
-.month__list-wrapper > ul > li::marker {
+.month__list-wrapper > ol > li::marker {
   font-size: 16px;
 }
 
@@ -8659,16 +8741,6 @@ body.lock {
   max-width: 801px;
   margin: 0 auto;
 }
-.vacancies__accordion-title > p {
-  font-family: "Plain", sans-serif;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 200;
-  line-height: 38px;
-  letter-spacing: -0.01em;
-  text-align: center;
-  color: #0f5576;
-}
 @media (max-width: 576px) {
   .vacancies__accordion-title {
     -webkit-box-ordinal-group: 3;
@@ -8712,8 +8784,11 @@ body.lock {
   -webkit-transition: max-height 0.5s ease-out;
   -o-transition: max-height 0.5s ease-out;
   transition: max-height 0.5s ease-out;
+  width: 100%;
+  max-width: 997px;
+  margin: 0 auto;
 }
-.vacancies__accordion-content > p, .vacancies__accordion-content h5, .vacancies__accordion-content h6, .vacancies__accordion-content ul, .vacancies__accordion-content li {
+.vacancies__accordion-content > p, .vacancies__accordion-content h1, .vacancies__accordion-content h2, .vacancies__accordion-content h3, .vacancies__accordion-content h4, .vacancies__accordion-content h5, .vacancies__accordion-content h6, .vacancies__accordion-content ul, .vacancies__accordion-content ol {
   font-family: "Plain", sans-serif;
   font-style: normal;
   font-weight: 300;
@@ -8722,6 +8797,25 @@ body.lock {
   letter-spacing: 0.02em;
   color: #1C1C1C;
   text-align: justify;
+}
+.vacancies__accordion-content > p:first-child, .vacancies__accordion-content h1:first-child, .vacancies__accordion-content h2:first-child, .vacancies__accordion-content h3:first-child, .vacancies__accordion-content h4:first-child, .vacancies__accordion-content h5:first-child, .vacancies__accordion-content h6:first-child, .vacancies__accordion-content ul:first-child, .vacancies__accordion-content ol:first-child {
+  padding-top: 20px;
+}
+.vacancies__accordion-content > p:not(last-child), .vacancies__accordion-content h1:not(last-child), .vacancies__accordion-content h2:not(last-child), .vacancies__accordion-content h3:not(last-child), .vacancies__accordion-content h4:not(last-child), .vacancies__accordion-content h5:not(last-child), .vacancies__accordion-content h6:not(last-child), .vacancies__accordion-content ul:not(last-child), .vacancies__accordion-content ol:not(last-child) {
+  margin-bottom: 32px;
+}
+.vacancies__accordion-content > ul, .vacancies__accordion-content ol {
+  padding-left: 25px;
+}
+.vacancies__title--vacancy {
+  font-family: "Plain", sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: 38px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #0f5576;
 }
 .vacancies__btn {
   width: 48px;

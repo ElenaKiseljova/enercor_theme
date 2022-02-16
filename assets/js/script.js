@@ -204,12 +204,12 @@ document.addEventListener("DOMContentLoaded", function () {
   accordion.forEach((item)=>{
     item.addEventListener("click", ()=>{
       const accordionContent = item.querySelector(".vacancies__accordion-content"),
-            accordionBtn = item.querySelector(".vacancies__wrapper-btn"),
-            accordionActive = document.querySelector(".vacancies__accordion");
+            accordionBtn = item.querySelector(".vacancies__wrapper-btn");
+
 
       accordionContent.classList.toggle("show-content");
       accordionBtn.classList.toggle("hide-btn");
-      accordionActive.classList.toggle("accordion--active");
+      item.classList.toggle("accordion--active");
 
       if(accordionContent.style.maxHeight){
         accordionContent.style.maxHeight = null;

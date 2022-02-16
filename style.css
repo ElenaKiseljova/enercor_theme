@@ -99,7 +99,7 @@ input[type=radio].visually-hidden {
 
 /* Project */
 
-.month>.container:before,
+/* .month>.container:before,
 .month>.container:after {
   display: none;
 }
@@ -151,4 +151,4 @@ input[type=radio].visually-hidden {
   border-right: none;
   border-top: none;
   border-bottom-left-radius: 123px;
-}
+} */
