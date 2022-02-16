@@ -5309,6 +5309,7 @@ body.lock {
   position: absolute;
   bottom: 0;
   left: 35%;
+  max-width: 48.8194444444%;
 }
 
 @media screen and (max-width: 1439px) {
@@ -5320,11 +5321,6 @@ body.lock {
 @media (max-width: 1368px) {
   .about__container {
     padding-top: 300px;
-  }
-  .about__img {
-    max-width: 48.8194444444%;
-    width: 100%;
-    left: 35%;
   }
 }
 @media (max-width: 1200px) {
