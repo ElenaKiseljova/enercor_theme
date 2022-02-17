@@ -25,14 +25,14 @@
     <?php endif; ?>
 
     <div class="container">
-      <h1 class="start-screen__contacts-title" <?= $color ? 'style="color: ' . $color . ';"' : ''; ?>>
+      <h1 class="start-screen__contacts-title start-screen-animate-js" <?= $color ? 'style="color: ' . $color . ';"' : ''; ?>>
         <?= isset($term->taxonomy) ? $term->name : get_the_title(  ); ?>
       </h1> 
       
       <?php if ($button && !empty($button['title'])) : ?>
         <?php if (!empty($button['link']) || $member_id) : ?>
           <div class="wrapper__btn start-screen__contacts-btn">
-            <div class="btn">
+            <div class="btn start-screen-animate-js">
               <a href="<?= $member_id ? (get_permalink( $member_id ) . '#publications') : $button['link']; ?>" class="btn__link">
                 <p class="btn__text start-screen__contacts-btn-text" <?= $color ? 'style="color: ' . $color . ';"' : ''; ?>><?= $button['title']; ?></p>
                 <div class="btn__arrow start-screen__contacts-btn-arrow">

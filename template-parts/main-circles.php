@@ -29,7 +29,7 @@
 
     <div class="container">
       <?php if ($title && !empty($title)) : ?>
-        <div class="start-screen__projects-title <?= $circles_count > 3 ? 'start-screen__service-title' : ''; ?>" <?= $color ? 'style="color: ' . $color . ';"' : ''; ?>>
+        <div class="start-screen__projects-title start-screen-animate-js <?= $circles_count > 3 ? 'start-screen__service-title' : ''; ?>" <?= $color ? 'style="color: ' . $color . ';"' : ''; ?>>
           <?= $title; ?>
         </div>
       <?php endif; ?>  

@@ -52,13 +52,13 @@
             <?php if ($text_bg) : ?>
               <div class="ceo__decoration">
                 <?php if (!empty($text_bg['1'])) : ?>
-                  <p class="ceo__decoration-text"><?= $text_bg['1']; ?></p>
+                  <p class="ceo__decoration-text ceo__decoration-js1"><?= $text_bg['1']; ?></p>
                 <?php endif; ?>
                 <?php if (!empty($text_bg['2'])) : ?>
-                  <p class="ceo__decoration-text"><?= $text_bg['2']; ?></p>
+                  <p class="ceo__decoration-text ceo__decoration-js2"><?= $text_bg['2']; ?></p>
                 <?php endif; ?>
                 <?php if (!empty($text_bg['3'])) : ?>
-                  <p class="ceo__decoration-text"><?= $text_bg['3']; ?></p>
+                  <p class="ceo__decoration-text ceo__decoration-js1"><?= $text_bg['3']; ?></p>
                 <?php endif; ?>              
               </div>
             <?php endif; ?>  

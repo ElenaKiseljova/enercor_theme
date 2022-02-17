@@ -20,16 +20,16 @@
     
     <div class="container">
       <?php if ($text_over && !empty($text_over)) : ?>
-        <p class="start-screen__text text" <?= $color ? 'style="color: ' . $color . ';"' : ''; ?>><?= $text_over; ?></p>
+        <p class="start-screen__text text start-screen-animate-js" <?= $color ? 'style="color: ' . $color . ';"' : ''; ?>><?= $text_over; ?></p>
       <?php endif; ?>
         
       <?php if ($title && !empty($title)) : ?>
-        <h1 class="start-screen__title" <?= $color ? 'style="color: ' . $color . ';"' : ''; ?>><?= $title; ?></h1>
+        <h1 class="start-screen__title start-screen-animate-js" <?= $color ? 'style="color: ' . $color . ';"' : ''; ?>><?= $title; ?></h1>
       <?php endif; ?>        
 
       <div class="start-screen__wrap">
         <?php if ($button && !empty($button['title']) && !empty($button['link'])) : ?>
-          <div class="wrapper__btn">
+          <div class="wrapper__btn start-screen-animate-js">
               <div class="btn">
                   <a href="<?= $button['link']; ?>" class="btn__link">
                       <p class="btn__text start-screen__btn-text" <?= $color ? 'style="color: ' . $color . ';"' : ''; ?>><?= $button['title']; ?></p>
@@ -48,13 +48,13 @@
         <?php if ($text_bg) : ?>
           <div class="start-screen__decor">
             <?php if (!empty($text_bg['1'])) : ?>
-              <p class="start-screen__decor-text"><?= $text_bg['1']; ?></p>
+              <p class="start-screen__decor-text screen-text1-js"><?= $text_bg['1']; ?></p>
             <?php endif; ?>
             <?php if (!empty($text_bg['2'])) : ?>
-              <p class="start-screen__decor-text"><?= $text_bg['2']; ?></p>
+              <p class="start-screen__decor-text screen-text2-js"><?= $text_bg['2']; ?></p>
             <?php endif; ?>
             <?php if (!empty($text_bg['3'])) : ?>
-              <p class="start-screen__decor-text"><?= $text_bg['3']; ?></p>
+              <p class="start-screen__decor-text screen-text1-js"><?= $text_bg['3']; ?></p>
             <?php endif; ?>              
           </div>
         <?php endif; ?>          

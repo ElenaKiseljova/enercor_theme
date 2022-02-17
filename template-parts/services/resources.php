@@ -13,7 +13,7 @@
     <?php endif; ?>
     
     <?php if ($list && !empty($list) && !is_wp_error( $list )) : ?>
-      <ul class="ability__list">
+      <ul class="ability__list ability__list-js">
         <?php foreach ($list as $key => $item) : ?>
           <?php 
             $title = $item['title'] ?? '';

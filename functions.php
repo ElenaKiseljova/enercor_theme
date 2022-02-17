@@ -13,9 +13,14 @@
   // Scripts theme
   function enercor_scripts () {
     if (!is_404()) {      
-      wp_enqueue_script('tween-max-script', get_template_directory_uri() . '/assets/js/tween-max.min.js', $deps = array(), $ver = null, $in_footer = true );
+      wp_enqueue_script('tween-max-script', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js', $deps = array(), $ver = null, $in_footer = true );
+      wp_enqueue_script('gsap-script', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js', $deps = array(), $ver = null, $in_footer = true );
+      wp_enqueue_script('ScrollTrigger-script', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js', $deps = array(), $ver = null, $in_footer = true );
+
       wp_enqueue_script('swiper-script', get_template_directory_uri() . '/assets/js/swiper-bundle.min.js', $deps = array(), $ver = null, $in_footer = true );
-    }    
+    }   
+    
+    wp_enqueue_script('animate-script', get_template_directory_uri() . '/assets/js/animate.js', $deps = array(), $ver = null, $in_footer = true );
 
     wp_enqueue_script('cursor-script', get_template_directory_uri() . '/assets/js/cursor.js', $deps = array(), $ver = null, $in_footer = true );
 

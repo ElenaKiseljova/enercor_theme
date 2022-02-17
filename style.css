@@ -3,7 +3,7 @@ Theme Name: Enercor
 Author: Webnauts
 Author URI: https://webnauts.pro/
 Description: Theme for Enercor site.
-Version: 2.0
+Version: 2.1
 Text Domain: enercor
 */
 
@@ -96,59 +96,3 @@ input[type=radio].visually-hidden {
 .team-workers__slide p {
   overflow-wrap: normal;
 }
-
-/* Project */
-
-/* .month>.container:before,
-.month>.container:after {
-  display: none;
-}
-
-.month {
-  padding-bottom: 133px;
-}
-
-.month__wrap {
-  position: relative;
-}
-
-.month__wrap:first-of-type {
-  padding-top: 92px;
-}
-
-.month__wrap:first-of-type::before,
-.month__wrap:last-of-type:after {
-  content: "";
-  position: absolute;
-
-  width: 50vw;
-  height: 100%;
-
-  border: 1px solid #0f5576;
-}
-
-.month__wrap:first-of-type::before {  
-  top: 0;
-  left: 0;
-
-  margin-left: calc(50% - 50vw);
-  
-  border-left: none;
-  border-bottom: none;
-  border-top-right-radius: 123px;
-}
-
-.month__wrap:last-of-type {
-  padding-bottom: 109px;
-}
-
-.month__wrap:last-of-type:after {
-  bottom: 0;
-  right: 0;
-
-  margin-right: calc(50% - 50vw);
-
-  border-right: none;
-  border-top: none;
-  border-bottom-left-radius: 123px;
-} */

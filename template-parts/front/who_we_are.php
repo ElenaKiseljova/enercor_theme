@@ -34,7 +34,7 @@
       <?php endif; ?> 
 
       <?php if ($button && !empty($button['link']) && (!empty($button['title_black']) || !empty($button['title_blue']))) : ?>
-        <div class="wrapper__btn who__btn">
+        <div class="wrapper__btn who__btn who__btn-animate-js">
             <div class="btn">
                 <a href="<?= $button['link']; ?>" class="btn__link">
                     <div class="btn__arrow ">

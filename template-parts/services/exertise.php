@@ -5,7 +5,7 @@
   $image = get_sub_field( 'image' );  
 ?>
 
-<section class="exertise" id="exertise">
+<section class="exertise exertise--animate" id="exertise">
   <?php if ($image && !empty($image) && !is_wp_error( $image )) : ?>
     <img src="<?= $image['sizes']['main_bg']; ?>" class="exertise__img" alt="exertise bg img">
   <?php endif; ?>
@@ -16,7 +16,7 @@
     <?php endif; ?>
     
     <?php if ($content_top && !empty($content_top)) : ?>
-      <div class="exertise__wrap">
+      <div class="exertise__wrap exertise__wrap-js">
         <?= $content_top; ?>
       </div>
     <?php endif; ?>

@@ -10,13 +10,13 @@
     <h1 class="team-start-screen__headline"><?= get_the_title( $archive_team_page_id ); ?></h1>
     <div class="team-start-screen__block">
       <?php if ($subtitle && !empty($subtitle)) : ?>
-        <h2 class="team-start-screen__title">
+        <h2 class="team-start-screen__title start-screen-animate-js">
           <?= $subtitle; ?>
         </h2>
       <?php endif; ?>
       
       <?php if ($text && !empty($text)) : ?>
-        <p class="team-start-screen__text">
+        <p class="team-start-screen__text start-screen-animate-js">
           <?= $text; ?>
         </p>
       <?php endif; ?>      
