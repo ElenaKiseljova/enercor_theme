@@ -76,7 +76,7 @@ const animateSection = (el, items) => {
 
 
 /*Main*/
-animate(".header", '.header__container');
+animate(".header", '.header__item');
 animateStartScreenText(".container", ".start-screen-animate-js");
 animateDecor('.start-screen', ".screen-text1-js", false);
 animateDecorReverse('.start-screen', ".screen-text2-js", true);
