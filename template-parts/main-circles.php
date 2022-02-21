@@ -38,7 +38,9 @@
         <ul class="projects__circle <?= $circles_count > 3 ? 'service__circle' : ''; ?>">
           <?php foreach ($circles as $circle) : ?>
             <li class="projects__circle-item <?= $circles_count > 3 ? 'service__circle-item' : ''; ?> projects__circle-item--active">
-              <?= $circle['title']; ?>
+              <a class="projects__circle-link" href="<?= $circle['link'] ?? '#'; ?>">
+                <?= $circle['title']; ?>
+              </a>              
             </li>
           <?php endforeach; ?>          
         </ul>

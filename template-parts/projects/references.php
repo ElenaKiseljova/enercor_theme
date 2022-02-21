@@ -11,7 +11,7 @@
     $list = $references['list'];
   ?>
 
-  <section class="reference">
+  <section class="reference" id="references">
     <div class="container">
       <?php if ($title && !empty($title)) : ?>
         <h2 class="reference__title title"><?= $title; ?></h2>

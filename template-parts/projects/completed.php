@@ -8,7 +8,7 @@
     $title = $completed['title'];
     $subtitle = $completed['subtitle']; 
   ?>
-  <section class="completed-projects">
+  <section class="completed-projects" id="completed">
     <div class="container">
       <?php if ($title && !empty($title)) : ?>
         <h3 class="completed-projects__title title"><?= $title; ?></h3>

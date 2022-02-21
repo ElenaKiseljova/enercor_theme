@@ -1,11 +1,13 @@
 <?php 
+  $id = get_row_layout() ?? '';
+
   $title = get_sub_field( 'title' );
   $content_top = get_sub_field( 'content_top' );  
   $content_bottom = get_sub_field( 'content_bottom' ); 
   $image = get_sub_field( 'image' );  
 ?>
 
-<section class="exertise exertise--animate" id="exertise">
+<section class="exertise exertise--animate" id="<?= $id; ?>">
   <?php if ($image && !empty($image) && !is_wp_error( $image )) : ?>
     <img src="<?= $image['sizes']['main_bg']; ?>" class="exertise__img" alt="exertise bg img">
   <?php endif; ?>

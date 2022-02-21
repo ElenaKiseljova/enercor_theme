@@ -404,7 +404,9 @@
     
     $class_link = '';
     if ($args->theme_location === 'top_menu') {
-      $class = $is_black_menu ? 'header__link header__link--black' : 'header__link';
+      if ($depth === 0) {
+        $class = $is_black_menu ? 'header__link header__link--black' : 'header__link';
+      }     
     }
     
     if ($args->theme_location === 'bottom_menu') {
@@ -433,7 +435,9 @@
   add_filter( 'nav_menu_css_class', 'enercor_change_menu_item_css_classes', 10, 4 );
   function enercor_change_menu_item_css_classes( $classes, $item, $args, $depth ) {
   	if( $args->theme_location === 'top_menu' ){
-  		$classes[] = 'header__item';
+      if ($depth === 0) {
+        $classes[] = 'header__item';
+      }   		
   	}
     
     if( $args->theme_location === 'bottom_menu' ){

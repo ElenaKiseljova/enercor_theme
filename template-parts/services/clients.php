@@ -4,7 +4,7 @@
   $quote = get_sub_field( 'quote' ); 
   $content = get_sub_field( 'content' );  
 ?>
-<section class="clients">
+<section class="clients" id="clients">
   <div class="container">
     <?php if ($title && !empty($title)) : ?>
       <h2 class="clients__title"><?= $title; ?></h2>

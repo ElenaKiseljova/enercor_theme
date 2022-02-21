@@ -18,7 +18,7 @@
   ?>
 
   <?php if ($toggle_visibility) : ?>
-    <section class="stages <?= $is_project ? 'stages__project-page' : ''; ?>">
+    <section class="stages <?= $is_project ? 'stages__project-page' : ''; ?>" id="stages">
       <div class="container">
         <?php if ($title && !empty($title)) : ?>
           <h3 class="stages__title title"><?= $title; ?></h3>

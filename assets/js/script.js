@@ -85,13 +85,14 @@ document.addEventListener("DOMContentLoaded", function () {
     let hamburger = document.querySelector(".hamburger"),
         nav = document.querySelector(".header__navigation"),
         menuFlag = false,
-        bodyDontScroll = document.body,
+        bodyDontScroll = document.documentElement,
         mainSection = document.querySelector("main");
-
+    console.log(bodyDontScroll)
 
     if (hamburger) {
         hamburger.addEventListener("click", (e) => {
             if (!menuFlag) {
+
                 hamburger.classList.toggle("open");
                 nav.classList.toggle("header__navigation--open");
                 bodyDontScroll.classList.toggle("body-scroll");
@@ -100,6 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
         nav.addEventListener("click", (e) => {
             let target = e.target;
             if (target.classList.contains("header__navigation")) {
+
                 hamburger.classList.toggle("open");
                 nav.classList.toggle("header__navigation--open");
                 bodyDontScroll.classList.toggle("body-scroll");

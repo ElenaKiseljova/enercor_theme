@@ -90,6 +90,7 @@ animateDecor('.ceo__about', ".ceo__decoration-js1", false);
 animateDecorReverse('.ceo__about', ".ceo__decoration-js2", true);
 animateSection(".services", ".services__wrap");
 animateSection('.services', ".services__info");
+animateSection('.services', ".services__wrapper-btn");
 animateSection(".projects", ".projects__text");
 animateSection(".projects", ".projects__wrap");
 animateSection(".projects", ".projects__btn-link");

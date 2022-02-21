@@ -26,9 +26,9 @@
           elseif( get_row_layout() == 'clients' ):
             get_template_part( 'template-parts/services/clients' );
           
-          // Case: Exertise layout.
-          elseif( get_row_layout() == 'exertise' ):
-            get_template_part( 'template-parts/services/exertise' );
+          // Case: Expertise layout.
+          elseif( get_row_layout() == 'expertise' ):
+            get_template_part( 'template-parts/services/expertise' );
 
           // Case: Resources layout.
           elseif( get_row_layout() == 'resources' ): 
@@ -36,7 +36,7 @@
 
           // Case: Industries layout.
           elseif( get_row_layout() == 'industries' ): 
-            get_template_part( 'template-parts/services/exertise' ); 
+            get_template_part( 'template-parts/services/expertise' ); 
           
           // Case: Resources without text layout.
           elseif( get_row_layout() == 'resources-no-text' ): 
