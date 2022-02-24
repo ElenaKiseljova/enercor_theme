@@ -14,7 +14,7 @@
     <div class="contact__navigation">
       <ul class="contact__navigation-list">
         <?php foreach ($list as $city) : ?>
-          <li class="contact__navigation-item <?= ($city->name === 'MOSCOW') ? 'contact__navigation-item--active' : ''; ?>">
+          <li class="contact__navigation-item <?= ($city->name === 'LONDON') ? 'contact__navigation-item--active' : ''; ?>">
             <?= $city->name; ?>
           </li>
         <?php endforeach; ?>
