@@ -6,9 +6,9 @@
   <?php
     get_template_part( 'template-parts/main' );
 
-    get_template_part( 'template-parts/service/info' );
-    
     get_template_part( 'template-parts/service/description' );
+
+    get_template_part( 'template-parts/service/info' );   
   ?>  
 </main>
 

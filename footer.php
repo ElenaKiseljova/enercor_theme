@@ -39,7 +39,10 @@
                 <ul class="footer__navigation-city-list">  
                   <?php foreach ($footer['cities'] as $city) : ?>
                     <li class="footer__navigation-city-item">
-                      <span class="footer__navigation-city-link"><?= $city->name; ?></span>
+                      <a class="footer__navigation-city-link"
+                         href="<?= $footer['button'] && $footer['button']['link'] ? ($footer['button']['link'] . '?city=' . $city->name) : ''; ?>">
+                         <?= $city->name; ?>
+                      </a>
                     </li>
                   <?php endforeach; ?>    
                 </ul>

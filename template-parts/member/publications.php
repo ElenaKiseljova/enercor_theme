@@ -5,6 +5,8 @@
 
   if ($publications) {
     $publications_title = $publications['title'];
+
+    $publications_logos = $publications['logos'];
   }
 
   $publications_arr = enercor_get_publications($member_id, null, 'data');
@@ -41,6 +43,24 @@
                 </a>
               </li>
             <?php endif; ?>            
+          <?php endforeach; ?>          
+        </ul>
+
+      <?php elseif ($publications_logos && is_array($publications_logos) && !empty($publications_logos) && !is_wp_error( $publications_logos )) : ?>
+        <ul class="publications__gallery">
+          <?php foreach ($publications_logos as $key => $term) : ?>
+            <?php 
+              $taxonomy = $term->taxonomy ?? '';
+              $term_name = $term->name ?? '';
+              $term_id = $term->term_id;
+
+              $logo = get_field( 'logo', $term ) ?? '';
+            ?>
+            <li class="publications__item"">
+              <a href="<?= $link; ?>?member_id=<?= $member_id; ?>" class="publications__link">
+                <img src="<?= $logo; ?>" alt="<?= $term_name; ?>">                  
+              </a>
+            </li>         
           <?php endforeach; ?>          
         </ul>
       <?php endif; ?>      

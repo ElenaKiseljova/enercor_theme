@@ -27,7 +27,7 @@
                 $phases = $item['phases'];
                 $results = $item['results'];
               ?>
-              <div class="phases__card">
+              <div class="phases__card" id="phases-<?= (int) $number; ?>">
                 <?php if (!empty($image) && !is_wp_error( $image )) : ?>
                   <img src="<?= $image['sizes']['stage']; ?>" class="phases__card-bg" alt="<?= bloginfo( 'name' ); ?>">
                 <?php endif; ?>                

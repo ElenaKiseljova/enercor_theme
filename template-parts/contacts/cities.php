@@ -1,5 +1,7 @@
 <?php 
   $cities = get_field( 'cities' );
+
+  $current_city = isset($_GET['city']) ? $_GET['city'] : null;
 ?>
 <?php if ($cities && !is_wp_error( $cities )) : ?>
   <?php 
@@ -14,7 +16,7 @@
     <div class="contact__navigation">
       <ul class="contact__navigation-list">
         <?php foreach ($list as $city) : ?>
-          <li class="contact__navigation-item <?= ($city->name === 'LONDON') ? 'contact__navigation-item--active' : ''; ?>">
+          <li class="contact__navigation-item <?= ((is_null( $current_city ) && $city->name === 'LONDON') || (isset( $current_city ) && $city->name === $current_city)) ? 'contact__navigation-item--active' : ''; ?>">
             <?= $city->name; ?>
           </li>
         <?php endforeach; ?>

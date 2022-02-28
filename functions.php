@@ -481,6 +481,26 @@
       ));
     }    
   }
+
+  /* ==============================================
+  ********  //ACF редактирование набора инструментов редактора
+  =============================================== */
+
+  add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
+  function my_toolbars( $toolbars )
+  {
+    // Uncomment to view format of $toolbars
+    
+    // echo '< pre >';
+    //   print_r($toolbars);
+    // echo '< /pre >';
+    // die;
+    
+    array_push($toolbars['Full' ][1], 'underline');
+
+    // return $toolbars - IMPORTANT!
+    return $toolbars;
+  }
   
   /* ==============================================
   ********  //Список проектов

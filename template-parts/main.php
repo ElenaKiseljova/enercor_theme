@@ -17,7 +17,7 @@
     
     $button = $main['button'];
   ?>
-  <section class="start-screen__contacts js-start-screen">
+  <section class="start-screen__contacts <?= (is_singular( 'projects' ) || is_tax( 'services' )) ? 'start-screen__project-page' : ''; ?> js-start-screen">
     <?php if ($image && !empty($image)) : ?>
       <div class="start-screen__contacts-img">
         <img src="<?= $image['sizes']['main_bg_half']; ?>" alt="<?= bloginfo( 'name' ); ?>">

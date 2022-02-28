@@ -27,7 +27,7 @@
 
       readMoreButtons.forEach((readMoreButton, i) => {
         const content = readMoreButton.previousElementSibling;
-        const children = content.querySelectorAll('*');
+        const children = content.querySelectorAll('p, ul, ol');
 
         content.innerHTML = '';
         content.appendChild(children[0]);

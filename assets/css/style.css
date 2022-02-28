@@ -602,7 +602,6 @@ body.lock {
 }
 .header__item:last-child {
   margin-right: 0;
-  margin-left: 23px;
 }
 @media (max-width: 1160px) {
   .header__item {
@@ -630,7 +629,11 @@ body.lock {
     -o-transition: transform 0.5s, opacity 0.5s;
     transition: transform 0.5s, opacity 0.5s;
     transition: transform 0.5s, opacity 0.5s, -webkit-transform 0.5s;
+    pointer-events: all;
   }
+}
+.header__item.current-menu-item a {
+  color: #abeaea;
 }
 .header__list {
   display: -webkit-box;
@@ -774,6 +777,7 @@ body.lock {
   -o-transition: transform 0.5s, opacity 0.5s;
   transition: transform 0.5s, opacity 0.5s;
   transition: transform 0.5s, opacity 0.5s, -webkit-transform 0.5s;
+  pointer-events: none;
 }
 @media (max-width: 1160px) {
   .header .sub-menu {
@@ -794,9 +798,9 @@ body.lock {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -5647,7 +5651,7 @@ body.lock {
   text-align: center;
   margin-bottom: 75px;
 }
-.biography__content > h4, .biography__content h5 {
+.biography__content h4, .biography__content h5 {
   font-family: "Plain", sans-serif;
   font-style: normal;
   font-weight: 300;
@@ -5656,10 +5660,10 @@ body.lock {
   letter-spacing: 0.02em;
   color: #1c1c1c;
 }
-.biography__content > h4:not(:last-child), .biography__content h5:not(:last-child) {
+.biography__content h4:not(:last-child), .biography__content h5:not(:last-child) {
   margin-bottom: 33px;
 }
-.biography__content > p {
+.biography__content p {
   font-family: "Plain", sans-serif;
   font-style: normal;
   font-weight: 300;
@@ -5668,16 +5672,13 @@ body.lock {
   letter-spacing: 0.02em;
   color: #1c1c1c;
 }
-.biography__content > p:not(:last-child) {
+.biography__content p:not(:last-child) {
   margin-bottom: 33px;
 }
-.biography__content > ul, .biography__content ol {
+.biography__content ul, .biography__content ol {
   padding-left: 30px;
 }
-.biography__content > ul:not(:last-child), .biography__content ol:not(:last-child) {
-  margin-bottom: 33px;
-}
-.biography__content > ul > li, .biography__content ol > li {
+.biography__content ul li, .biography__content ol li {
   font-family: "Plain", sans-serif;
   font-style: normal;
   font-weight: 300;
@@ -5822,7 +5823,7 @@ body.lock {
 .publications__wrapper {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 145px 30px 0;
+  padding: 0 30px 0;
 }
 @media (max-width: 1200px) {
   .publications__wrapper {
@@ -5839,7 +5840,7 @@ body.lock {
   text-transform: uppercase;
   color: #0f5576;
   text-align: center;
-  margin-bottom: 175px;
+  margin-bottom: 75px;
 }
 .publications__text {
   font-family: "Plain", sans-serif;
@@ -5851,15 +5852,16 @@ body.lock {
   text-transform: uppercase;
   color: #0f5576;
   margin-top: 30px;
-  margin-bottom: 140px;
 }
 .publications__gallery {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[4];
   grid-template-columns: repeat(4, 1fr);
-  -ms-grid-rows: (1fr)[2];
-  grid-template-rows: repeat(2, 1fr);
+  -ms-grid-rows: auto;
+  grid-template-rows: auto;
+  row-gap: 140px;
+  padding-bottom: 140px;
 }
 .publications__item {
   display: -webkit-box;
@@ -5883,12 +5885,13 @@ body.lock {
   .publications__gallery {
     -ms-grid-columns: (1fr)[2];
     grid-template-columns: repeat(2, 1fr);
-    -ms-grid-rows: (1fr)[4];
-    grid-template-rows: repeat(4, 1fr);
+    -ms-grid-rows: auto;
+    grid-template-rows: auto;
+    row-gap: 40px;
+    padding-bottom: 40px;
   }
   .publications__text {
     margin-top: 20px;
-    margin-bottom: 40px;
   }
 }
 @media (max-width: 768px) {
@@ -7236,7 +7239,6 @@ body.lock {
   font-size: 28px;
   line-height: 118.5%;
   letter-spacing: -0.01em;
-  text-transform: capitalize;
   color: #141414;
 }
 @media (max-width: 768px) {
@@ -7673,6 +7675,9 @@ body.lock {
           animation-duration: 7s;
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
+}
+.stages__circle-item a {
+  color: inherit;
 }
 .stages__circle-item::after {
   content: "";
@@ -8882,6 +8887,7 @@ body.lock {
   max-width: 122px;
   color: #0f5576;
   margin-left: 36px;
+  text-transform: uppercase;
 }
 @media (max-width: 1200px) {
   .vacancies__accordion-info {
@@ -8987,102 +8993,11 @@ body.lock {
 }
 
 /* Publication */
-.publication-info__btn-text {
-  display: block;
-}
-
-.publication-info__text-block {
-  max-height: none;
-}
-
-.publication-info__accordion.height-set {
-  overflow: hidden;
-  -webkit-transition: height 0.3s 0.1s;
-  -o-transition: height 0.3s 0.1s;
-  transition: height 0.3s 0.1s;
-}
-
-.publication-info__accordion.active {
-  -webkit-transition: height 0.3s;
-  -o-transition: height 0.3s;
-  transition: height 0.3s;
-}
-
-.publication-info__accordion.height-set .publication-info__text-block {
-  opacity: 0;
-  -webkit-transition: opacity 0.3s;
-  -o-transition: opacity 0.3s;
-  transition: opacity 0.3s;
-}
-
-.publication-info__accordion.active .publication-info__text-block {
-  opacity: 1;
-  -webkit-transition: opacity 0.3s 0.1s;
-  -o-transition: opacity 0.3s 0.1s;
-  transition: opacity 0.3s 0.1s;
-}
-
-.publication-info__accordion.active .publication-info__btn-icon {
-  -webkit-transform: rotate(180deg);
-      -ms-transform: rotate(180deg);
-          transform: rotate(180deg);
-}
-
-@media screen and (max-width: 1200px) {
-  .publication-info__name {
-    padding-right: 180px;
-  }
-}
-@media screen and (max-width: 1000px) {
-  .publication-info__panel,
-.publication-info__text {
-    padding-bottom: 80px;
-  }
-
-  .publication-info__accordion.active .publication-info__panel {
-    padding-bottom: 20px;
-  }
-
-  .publication-info__name {
-    padding-right: 20px;
-  }
-
-  .publication-info__btn {
-    bottom: 20px;
-  }
-
-  .publication-info__text {
-    padding-bottom: 80px;
-    padding-right: 20px;
-  }
-}
-@media screen and (max-width: 1000px) {
-  .publication-info__panel,
-.publication-info__text {
-    padding-bottom: 50px;
-  }
-
-  .publication-info__accordion.active .publication-info__panel {
-    padding-bottom: 15px;
-  }
-
-  .publication-info__name {
-    padding-right: 15px;
-  }
-
-  .publication-info__btn {
-    bottom: 15px;
-  }
-
-  .publication-info__text {
-    padding-bottom: 50px;
-    padding-right: 15px;
-  }
-}
 .footer {
   overflow: hidden;
   position: relative;
   z-index: 2;
+  background-color: #1c1c1c;
 }
 .footer::before {
   content: "";

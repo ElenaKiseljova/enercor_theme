@@ -54,29 +54,31 @@
 
               <li class="stages__circle-item <?= $is_project ? 'stages__circle-project-page-item' : ''; ?>" 
                   data-text="<?= $background_text; ?>">
-                <?php if ($title && !empty($title)) : ?>
-                  <p class="stages__circle-item-title <?= $is_project ? 'stages__circle-project-page-item-title' : ''; ?>">
-                    <?php if (!$is_project) : ?>
-                      <span class="stages__circle-item-number">
-                        <?= $number; ?>
-                      </span>
-                    <?php endif; ?>
-                    
-                    <?= $title; ?>
-                  </p>
-                <?php endif; ?>
-                
-                <?php if (!empty($subtitle)) : ?>
-                  <p class="stages__circle-item-text <?= $is_project ? 'stages__circle-project-page-item-text' : ''; ?>">
-                    <?= $subtitle; ?> 
-                  </p>
-                <?php endif; ?>
-                
-                <?php if (!empty($period)) : ?>
-                  <p class="stages__circle-item-months">
-                    <?= $period; ?>
-                  </p>
-                <?php endif; ?>            
+                <a class="stages__circle-link" href="#phases-<?= $key + 1; ?>">
+                  <?php if ($title && !empty($title)) : ?>
+                    <p class="stages__circle-item-title <?= $is_project ? 'stages__circle-project-page-item-title' : ''; ?>">
+                      <?php if (!$is_project) : ?>
+                        <span class="stages__circle-item-number">
+                          <?= $number; ?>
+                        </span>
+                      <?php endif; ?>
+                      
+                      <?= $title; ?>
+                    </p>
+                  <?php endif; ?>
+                  
+                  <?php if (!empty($subtitle)) : ?>
+                    <p class="stages__circle-item-text <?= $is_project ? 'stages__circle-project-page-item-text' : ''; ?>">
+                      <?= $subtitle; ?> 
+                    </p>
+                  <?php endif; ?>
+                  
+                  <?php if (!empty($period)) : ?>
+                    <p class="stages__circle-item-months">
+                      <?= $period; ?>
+                    </p>
+                  <?php endif; ?> 
+                </a>           
               </li>
             <?php endforeach; ?>          
           </ol>
