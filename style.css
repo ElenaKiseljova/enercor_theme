@@ -10,7 +10,6 @@ Text Domain: enercor
 @import "assets/css/style.min.css";
 
 img {
-  width: auto;
   max-width: 100%;
   height: auto;
 }

@@ -221,28 +221,30 @@ document.addEventListener("DOMContentLoaded", function () {
   window.scrollSmooth = (container = document) => {
     const hrefAttributes = container.querySelectorAll("a[href*='#']");
 
-    hrefAttributes.forEach((item) => {
-      const href = item.href.split('#');
+    if (hrefAttributes.length > 0) {
+      hrefAttributes.forEach((item) => {
+        const href = item.href.split('#');
 
-      const CURRENT_URL = window.location.origin + window.location.pathname;
+        const CURRENT_URL = window.location.origin + window.location.pathname;
 
-      if (href[0] === CURRENT_URL) {
-        item?.addEventListener('click', (e) => {
-          e.preventDefault();
+        if (href[0] === CURRENT_URL) {
+          item.addEventListener('click', (e) => {
+            e.preventDefault();
 
-          const scrollTarget = document.getElementById(href[1]);
+            const scrollTarget = document.getElementById(href[1]);
 
-          const topOffset = 100;
-          const elementPosition = scrollTarget.getBoundingClientRect().top;
-          const offsetPosition = elementPosition - topOffset;
+            const topOffset = 100;
+            const elementPosition = scrollTarget.getBoundingClientRect().top;
+            const offsetPosition = elementPosition - topOffset;
 
-          window.scrollBy({
-            top: offsetPosition,
-            behavior: 'smooth',
+            window.scrollBy({
+              top: offsetPosition,
+              behavior: 'smooth',
+            });
           });
-        });
-      }
-    });
+        }
+      });
+    }
   };
 
   window.scrollSmooth();

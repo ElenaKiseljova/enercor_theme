@@ -15,7 +15,9 @@
   
   <section class="start-screen <?= $is_enercor ? 'enercor-start-screen' : ''; ?> js-start-screen ">
     <?php if ($image && !empty($image)) : ?>
-      <img class="start-screen__img" src="<?= $image['sizes']['main_bg']; ?>" alt="<?= bloginfo( 'name' ); ?>">
+      <div class="start-screen__img">
+        <img src="<?= $image['sizes']['main_bg']; ?>" alt="<?= bloginfo( 'name' ); ?>">
+      </div>      
     <?php endif; ?>
     
     <div class="container">

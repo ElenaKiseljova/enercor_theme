@@ -8,69 +8,69 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 const defs = {
-    duration: 0.5,
+  duration: 0.5,
 };
 
 const scrollTriggerInstance = (el, animation) => {
-    return ScrollTrigger.create({
-        animation,
-        trigger: el,
-        start: "top center",
+  return ScrollTrigger.create({
+    animation,
+    trigger: el,
+    start: "top center",
 
-    });
+  });
 };
 const animate = (el, items) => {
-    const tl = gsap.timeline(defs);
-    gsap.set(items, {opacity: 0});
-    tl.fromTo(
-        items,
-        {yPercent: 30, opacity: 0},
-        {yPercent: 0, opacity: 1, stagger:0.5}
-    );
-    return tl;
+  const tl = gsap.timeline(defs);
+  gsap.set(items, { opacity: 0 });
+  tl.fromTo(
+    items,
+    { yPercent: 30, opacity: 0 },
+    { yPercent: 0, opacity: 1, stagger: 0.1 }
+  );
+  return tl;
 };
 
 const animateStartScreenText = (el, items) => {
-    const tl = gsap.timeline(defs);
-    gsap.set(items, {opacity: 0});
-    tl.fromTo(
-        items,
-        {yPercent: 30, opacity: 0},
-        {yPercent: 0, opacity: 1, stagger:0.5,duration:1}
-    );
-    return tl;
+  const tl = gsap.timeline(defs);
+  gsap.set(items, { opacity: 0 });
+  tl.fromTo(
+    items,
+    { yPercent: 30, opacity: 0 },
+    { yPercent: 0, opacity: 1, stagger: 0.5, duration: 1 }
+  );
+  return tl;
 };
 const animateDecor = (el, items, param) => {
-    const tl = gsap.timeline(defs);
-    tl.fromTo(
-        items,
-        {x: innerWidth * (param ? 1 : -1)},
-        {x: 0, stagger:0.2, duration:1}
-    );
-    scrollTriggerInstance(el, tl);
-    return tl;
+  const tl = gsap.timeline(defs);
+  tl.fromTo(
+    items,
+    { x: innerWidth * (param ? 1 : -1) },
+    { x: 0, stagger: 0.2, duration: 1 }
+  );
+  scrollTriggerInstance(el, tl);
+  return tl;
 };
 const animateDecorReverse = (el, items, param) => {
-    const tl = gsap.timeline(defs);
-    tl.fromTo(
-        items,
-        {x: innerWidth * (param ? 1 : -1)},
-        {x: 0, stagger:0.2,duration:2},
-    );
-    scrollTriggerInstance(el, tl);
-    return tl;
+  const tl = gsap.timeline(defs);
+  tl.fromTo(
+    items,
+    { x: innerWidth * (param ? 1 : -1) },
+    { x: 0, stagger: 0.2, duration: 2 },
+  );
+  scrollTriggerInstance(el, tl);
+  return tl;
 };
 
 const animateSection = (el, items) => {
-    const tl = gsap.timeline(defs);
-    gsap.set(items, {opacity: 0});
-    tl.fromTo(
-        items,
-        {yPercent: 30, opacity: 0},
-        {yPercent: 0, opacity: 1, stagger:0.5, duration: 1}
-    );
-    scrollTriggerInstance(el, tl);
-    return tl;
+  const tl = gsap.timeline(defs);
+  gsap.set(items, { opacity: 0 });
+  tl.fromTo(
+    items,
+    { yPercent: 30, opacity: 0 },
+    { yPercent: 0, opacity: 1, stagger: 0.1, duration: 0.8 }
+  );
+  scrollTriggerInstance(el, tl);
+  return tl;
 };
 
 
@@ -82,7 +82,7 @@ animateDecor('.start-screen', ".screen-text1-js", false);
 animateDecorReverse('.start-screen', ".screen-text2-js", true);
 animateSection(".who", ".who__item");
 animateSection(".who__item", ".who__info");
-animateSection(".who__wrapper",".who__btn-animate-js");
+animateSection(".who__wrapper", ".who__btn-animate-js");
 animateSection(".team", ".team__wrap");
 animateDecor(".ceo", ".ceo__img");
 animateSection(".ceo", ".ceo__about>*");
@@ -150,13 +150,13 @@ animateSection(".reference", ".reference__info");
 
 /*Project-page*/
 animateSection(".container", ".start-screen__contacts-btn");
-animateDecor(".provider", ".provider__price",false);
-animateSection(".provider",".provider__content>*");
+animateDecor(".provider", ".provider__price", false);
+animateSection(".provider", ".provider__content>*");
 animateSection(".month", ".month__wrap>*");
 
 /*Vacancies*/
-animateSection(".start-screen__contacts",".news-info__notice>*");
-animateSection(".vacancies",".vacancies__wrapper>*");
+animateSection(".start-screen__contacts", ".news-info__notice>*");
+animateSection(".vacancies", ".vacancies__wrapper>*");
 
 /*News*/
 animateSection(".news-info", ".contact__follow-title");
@@ -169,7 +169,7 @@ animateSection(".contact", ".contact__questions");
 animateSection(".contact", ".contact__form>*");
 
 /*Publication*/
-animateSection(".publication-start-screen",".publication-start-screen__btn");
+animateSection(".publication-start-screen", ".publication-start-screen__btn");
 
 /* Shavrov */
 animateSection(".about", ".about__headline");

@@ -1,7 +1,11 @@
 <?php 
-  $archive_projects_page_id = get_field( 'archive_projects', 'option' );
+  if ( is_archive(  ) ) {
+    $archive_projects_page_id = get_field( 'archive_projects', 'option' );
 
-  $completed = get_field( 'completed', $archive_projects_page_id );
+    $completed = get_field( 'completed', $archive_projects_page_id );
+  } else {
+    $completed = get_field( 'completed' );
+  }  
 ?>
 <?php if ($completed && !is_wp_error( $completed )) : ?>
   <?php 
@@ -18,7 +22,13 @@
         <h4 class="completed-projects__subtitle"><?= $subtitle; ?></h4>
       <?php endif; ?>
       
-      <?php enercor_projects_list_html(); ?>         
+      <?php 
+        if ( is_archive(  ) ) {
+          enercor_projects_list_html( -1, 6, 1 );
+        } else {
+          enercor_projects_list_html( -1, 999999, 1, 6 );
+        }
+      ?>         
 
       <div class="popup">
           <div class="popup__header">

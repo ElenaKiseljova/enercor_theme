@@ -16,26 +16,34 @@
       <ul class="ability__list ability__list-js">
         <?php foreach ($list as $key => $item) : ?>
           <?php 
-            $title = $item['title'] ?? '';
-            $icon = $item['icon'];
-            $item_list = $item['list'];
-          ?>
-          <li class="ability__item">
-            <?php if ($icon && !empty($icon)) : ?>
-              <img src="<?= $icon; ?>" class="ability__item-img" alt="<?= !empty($title) ? $title : 'img'; ?>">
-            <?php endif; ?>            
+            $expertise = $item['expertise'] ?? null;
 
-            <?php if ($item_list && !empty($item_list)) : ?>
-              <ul class="ability__item-list">
-                <?php foreach ($item_list as $key => $item_inner) : ?>
-                  <li class="ability__item-info">
-                      <?= $item_inner['text']; ?>
-                  </li>
-                <?php endforeach; ?>
-              </ul>
-            <?php endif; ?>
-            
-          </li>
+            $item_list = $item['list'];
+
+            $item_icon_width = $item['icon_width'] ?? null;
+          ?>
+
+          <?php if ($expertise && $expertise instanceof WP_Term) : ?>
+            <?php 
+              $icon = get_field( 'icon',  $expertise ) ?? '';
+            ?>
+            <li class="ability__item" id="expertise-<?= $expertise->term_id; ?>">
+              <?php if ($icon && !empty($icon)) : ?>
+                <img <?= $item_icon_width ? 'width="' . $item_icon_width . '"' : ''; ?> src="<?= $icon; ?>" class="ability__item-img" alt="<?= $expertise->name ?? 'img'; ?>">
+              <?php endif; ?>            
+
+              <?php if ($item_list && !empty($item_list)) : ?>
+                <ul class="ability__item-list">
+                  <?php foreach ($item_list as $key => $item_inner) : ?>
+                    <li class="ability__item-info">
+                        <?= $item_inner['text']; ?>
+                    </li>
+                  <?php endforeach; ?>
+                </ul>
+              <?php endif; ?>
+              
+            </li>
+          <?php endif; ?>          
         <?php endforeach; ?>        
       </ul>
     <?php endif; ?>    

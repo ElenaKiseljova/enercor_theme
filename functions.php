@@ -535,13 +535,13 @@
     }    
   }
 
-  function enercor_projects_list_html() {
+  function enercor_projects_list_html( $term_id = -1, $posts_per_page = 6, $paged = 1, $offset = null ) {
       
     ?>
       <div class="swiper international-project">
         <div class="swiper-wrapper" id="international-project-ajax">
           <?php 
-            $show_more = enercor_projects_list_items_html(-1, 6, 1); 
+            $show_more = enercor_projects_list_items_html( $term_id, $posts_per_page, $paged, $offset ); 
           ?>
         </div>
       </div>
@@ -551,30 +551,41 @@
     enercor_projects_more_button_html($show_more['visibility']);
   }
 
-  function enercor_projects_list_items_html ( $term_id, $posts_per_page = 6, $paged = 1 ) { 
+  function enercor_projects_list_items_html ( $term_id, $posts_per_page = 6, $paged = 1, $offset = null ) { 
     $show_more = [
       'next_page' => $paged + 1,
       'visibility' => false,
-    ];
+    ];    
 
-    $args = array(
-      'post_type' => 'projects',
-      'post_status' => 'publish',
-      'order' => 'ASC',
-      'orderby' => 'menu_order',
-      'posts_per_page' => $posts_per_page,
-      'paged' => $paged,
-    );
-
-    if ((int) $term_id !== -1) {
-      $args['tax_query'] = array(
-        array(
-        'taxonomy' => 'services',
-        'field' => 'term_id',
-        'terms' => (int) $term_id,
-        )
+    if ( is_null( $offset ) ) {
+      $args = array(
+        'post_type' => 'projects',
+        'post_status' => 'publish',
+        'order' => 'ASC',
+        'orderby' => 'menu_order',
+        'posts_per_page' => $posts_per_page,
+        'paged' => $paged,
+      );
+    } else {      
+      $args = array(
+        'post_type' => 'projects',
+        'post_status' => 'publish',
+        'order' => 'ASC',
+        'orderby' => 'menu_order',
+        'posts_per_page' => $posts_per_page,
+        'offset' => $offset,
       );
     }
+
+    // if ((int) $term_id !== -1) {
+    //   $args['tax_query'] = array(
+    //     array(
+    //     'taxonomy' => 'services',
+    //     'field' => 'term_id',
+    //     'terms' => (int) $term_id,
+    //     )
+    //   );
+    // }
 
     $query = new WP_Query( $args ); 
 
@@ -589,7 +600,7 @@
         $query->the_post();
 
         get_template_part( 'template-parts/projects/project' );
-      }    
+      }  
 
       wp_reset_postdata();
     } else {
@@ -608,14 +619,23 @@
   } 
 
   function enercor_projects_more_button_html ( $show = false, $term_id = -1, $paged = 2 ) {
-    $completed = get_field( 'completed', 'option' );
+    $projects_archive_page = get_field( 'archive_projects', 'options' );
+    $completed = get_field( 'completed', $projects_archive_page );
     $button = $completed['button']; 
     
-    if ( $button && !empty($button) && $show ) {
+    // if ( $button && !empty($button['title']) && $show ) {
       ?>
-        <button class="completed-projects__btn completed-projects__btn--show-more" data-paged="<?= $paged; ?>" data-term-id="<?= $term_id; ?>">
-          <?= $button; ?>
-        </button>
+        <!-- <button class="completed-projects__btn completed-projects__btn--show-more" data-paged="<?= $paged; ?>" data-term-id="<?= $term_id; ?>">
+          <?= $button['title']; ?>
+        </button> -->
+      <?php
+    // }
+    
+    if ( $button && !empty($button['title']) && !empty($button['link']) && $show ) {
+      ?>
+        <a class="completed-projects__btn" href="<?= $button['link']; ?>">
+          <?= $button['title']; ?>
+        </a>
       <?php
     }
   }

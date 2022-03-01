@@ -37,7 +37,8 @@
           break;
         
         default:
-          # code...
+          $form_shortcode = '[contact-form-7 id="204" title="Contacts page - London"]';
+
           break;
       }
 

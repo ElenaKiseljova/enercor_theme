@@ -57,9 +57,9 @@
               $logo = get_field( 'logo', $term ) ?? '';
             ?>
             <li class="publications__item"">
-              <a href="<?= $link; ?>?member_id=<?= $member_id; ?>" class="publications__link">
+              <div class="publications__link">
                 <img src="<?= $logo; ?>" alt="<?= $term_name; ?>">                  
-              </a>
+              </div>
             </li>         
           <?php endforeach; ?>          
         </ul>

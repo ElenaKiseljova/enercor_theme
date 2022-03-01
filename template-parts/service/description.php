@@ -7,7 +7,10 @@
   <?php 
     $toggle_visibility = $description['toggle_visibility'];  
 
-    $image = $description['image'];  
+    $image = $description['image']; 
+    
+    $title = $description['title'];
+
     $text = $description['text'];
   ?>
 
@@ -18,6 +21,8 @@
           <img class="services-description__img" src="<?= $image['sizes']['front_projects_bg']; ?>" alt="<?= strip_tags($term->name); ?>">
         <?php endif; ?>
         
+        <h3 class="exertise__title"><?= $title; ?></h3>
+
         <?php if ($text && !empty($text)) : ?>
           <p class="services-description__text">
             <?= $text; ?>
