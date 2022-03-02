@@ -29,9 +29,9 @@
           </div>
 
           <?php if ($locations && !empty($locations)) : ?>
-            <h3 class="provider__content-location">
+            <div class="provider__content-location">
               <?= $locations; ?>
-            </h3>
+            </div>
           <?php endif; ?>
           
 

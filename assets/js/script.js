@@ -1,3 +1,5 @@
+let hash = false;
+
 document.addEventListener("DOMContentLoaded", function () {
 
   let flag = false;
@@ -219,9 +221,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* Плавный скролл к элементам */
   window.scrollSmooth = (container = document) => {
+    let headerHeight = 96;
+
+    const header = document.querySelector('.header');
+
+    if (header) {
+      headerHeight = header.offsetHeight;
+    }
+
+    const scrollToHash = (hash, offset) => {
+      const scrollTarget = document.getElementById(hash);
+
+      const elementPosition = scrollTarget.getBoundingClientRect().top;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollBy({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    };
+
+    if (hash) {
+      scrollToHash(hash, headerHeight);
+    }
+
     const hrefAttributes = container.querySelectorAll("a[href*='#']");
 
     if (hrefAttributes.length > 0) {
+
       hrefAttributes.forEach((item) => {
         const href = item.href.split('#');
 
@@ -231,16 +258,7 @@ document.addEventListener("DOMContentLoaded", function () {
           item.addEventListener('click', (e) => {
             e.preventDefault();
 
-            const scrollTarget = document.getElementById(href[1]);
-
-            const topOffset = 100;
-            const elementPosition = scrollTarget.getBoundingClientRect().top;
-            const offsetPosition = elementPosition - topOffset;
-
-            window.scrollBy({
-              top: offsetPosition,
-              behavior: 'smooth',
-            });
+            scrollToHash(href[1], headerHeight);
           });
         }
       });
@@ -249,7 +267,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.scrollSmooth();
 
-
-
   console.log("DOM fully loaded and parsed");
-})
+});
+
+(() => {
+  hash = window.location.hash.split('#')[1];
+
+  window.location.hash = '';
+})()

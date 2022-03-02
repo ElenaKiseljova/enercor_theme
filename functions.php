@@ -56,7 +56,7 @@
       /* ==============================================
       ********  //Лого
       =============================================== */
-      add_theme_support( 'custom-logo' );
+      // add_theme_support( 'custom-logo' );
       
       /* ==============================================
       ********  //Меню
@@ -373,6 +373,19 @@
       register_custom_taxonomy();
     }  
   endif;
+
+  /* ==============================================
+  ********  //Редиректы
+  =============================================== */
+  add_action( 'parse_query', 'disablet_some_links' );
+
+  function disablet_some_links ( $query ) {
+    if( is_category(  ) || is_singular( 'post' ) || (is_singular( 'projects' ) && !get_the_content(  )) ) {
+        wp_redirect( home_url() );
+
+        exit;
+    }
+  }
   
   /* ==============================================
   ********  //Класс для ссылок меню

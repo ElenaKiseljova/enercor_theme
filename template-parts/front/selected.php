@@ -65,7 +65,7 @@
                     <?php foreach ($services as $service) : ?>
                       <?php 
                         $service_id = $service->term_id;
-                        $service_link = get_term_link( $service_id, 'services' ); 
+                        $service_link = get_bloginfo( 'url' ) . '/services'; //get_term_link( $service_id, 'services' ); 
                       ?>
                       <?php if (!is_wp_error( $service_link )) : ?>
                         <li class="selected__card-info-item">

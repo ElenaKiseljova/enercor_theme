@@ -27,21 +27,22 @@
             <?php 
               $icon = get_field( 'icon',  $expertise ) ?? '';
             ?>
-            <li class="ability__item" id="expertise-<?= $expertise->term_id; ?>">
-              <?php if ($icon && !empty($icon)) : ?>
-                <img <?= $item_icon_width ? 'width="' . $item_icon_width . '"' : ''; ?> src="<?= $icon; ?>" class="ability__item-img" alt="<?= $expertise->name ?? 'img'; ?>">
-              <?php endif; ?>            
+            <li class="ability__item" id="expertise-<?= $expertise->term_id; ?>">              
+              <div class="abilyty__container">
+                <?php if ($icon && !empty($icon)) : ?>
+                  <img <?= $item_icon_width ? 'width="' . $item_icon_width . '"' : ''; ?> src="<?= $icon; ?>" class="ability__item-img" alt="<?= $expertise->name ?? 'img'; ?>">
+                <?php endif; ?>            
 
-              <?php if ($item_list && !empty($item_list)) : ?>
-                <ul class="ability__item-list">
-                  <?php foreach ($item_list as $key => $item_inner) : ?>
-                    <li class="ability__item-info">
-                        <?= $item_inner['text']; ?>
-                    </li>
-                  <?php endforeach; ?>
-                </ul>
-              <?php endif; ?>
-              
+                <?php if ($item_list && !empty($item_list)) : ?>
+                  <ul class="ability__item-list">
+                    <?php foreach ($item_list as $key => $item_inner) : ?>
+                      <li class="ability__item-info">
+                          <?= $item_inner['text']; ?>
+                      </li>
+                    <?php endforeach; ?>
+                  </ul>
+                <?php endif; ?>
+              </div>
             </li>
           <?php endif; ?>          
         <?php endforeach; ?>        

@@ -90,7 +90,8 @@
       <?= get_the_excerpt(  ); ?>
     </p>
     
-    <div class="wrapper__btn ">
+    <?php if ( get_the_content(  ) ) : ?>
+      <div class="wrapper__btn ">
         <div class="btn">                        
           <a href="<?= get_permalink(  ); ?>" class="btn__link popup__btn">
             <div class="btn__arrow ">
@@ -107,6 +108,7 @@
             <p class="btn__text popup__btn-text">Go to project</p>
           </a>
         </div>
-      </div>               
+      </div> 
+    <?php endif; ?>                  
   </template>
 </div>

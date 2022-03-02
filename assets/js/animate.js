@@ -132,7 +132,7 @@ animateSection(".clients", ".clients__wide-range>*");
 animateSection(".exertise", ".exertise__wrap>*");
 animateSection(".exertise", ".exertise__unique>*");
 animateSection(".ability", ".ability__title");
-animateSection(".ability", ".ability__list-js>*");
+animateSection(".ability", ".ability__list-js .ability__container");
 animateSection(".exertise--animate", ".exertise__wrap-js");
 animateSection(".exertise--animate", ".exertise__wrap-js");
 animateSection(".industrial", ".industrial__list>*");
@@ -140,7 +140,7 @@ animateSection(".industrial", ".industrial__list>*");
 /*Project*/
 animateSection(".start-screen__projects", ".projects__circle>*");
 animateSection(".stages", ".stages__circle>*");
-animateSection(".phases", ".phases__wrapper>*");
+animateSection(".phases", ".phases__card-bg");
 animateSection(".phases", ".phases__card-number");
 animateSection(".phases", ".phases__wrap-list>*");
 animateSection(".completed-projects", ".completed-projects__subtitle");
