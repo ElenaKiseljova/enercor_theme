@@ -1,9 +1,11 @@
 <?php 
-    $title = get_sub_field('title');
-    $subtitle = get_sub_field('subtitle');
-    $projects = get_sub_field('projects');
-    $button = get_sub_field('button');
-  ?>
+  $services_page_url = get_permalink( get_page_by_title( 'Services' ) ) ?? get_permalink( get_page_by_path( 'services' ) );
+
+  $title = get_sub_field('title');
+  $subtitle = get_sub_field('subtitle');
+  $projects = get_sub_field('projects');
+  $button = get_sub_field('button');
+?>
   <section class="selected">
     <div class="container">
       <?php if (!empty($title)) : ?>
@@ -65,7 +67,7 @@
                     <?php foreach ($services as $service) : ?>
                       <?php 
                         $service_id = $service->term_id;
-                        $service_link = get_bloginfo( 'url' ) . '/services'; //get_term_link( $service_id, 'services' ); 
+                        $service_link = $services_page_url; //get_term_link( $service_id, 'services' ); 
                       ?>
                       <?php if (!is_wp_error( $service_link )) : ?>
                         <li class="selected__card-info-item">

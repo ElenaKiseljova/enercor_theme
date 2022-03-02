@@ -1,4 +1,6 @@
 <?php 
+  $services_page_url = get_permalink( get_page_by_title( 'Services' ) ) ?? get_permalink( get_page_by_path( 'services' ) );
+  
   $archive_team_page_id = get_field( 'archive_team', 'option' );
 
   $biography = get_field( 'biography', $archive_team_page_id );
@@ -88,13 +90,15 @@
                                         $icon = get_field( 'icon', $item );
                                       ?>
                                       <li class="team-workers__item">
-                                        <?php if ($icon) : ?>
-                                          <img class="team-workers__icon" src="<?= $icon; ?>" alt="<?= strip_tags( $item->name ); ?>">
-                                        <?php endif; ?>
-                                        
-                                        <span class="team-workers__text">
-                                          <?= str_replace('\n', '<br>', $item->name); ?>
-                                        </span>
+                                        <a class="team-workers__link" href="<?= $services_page_url ?? ''; ?>#expertise-<?= $item->term_id; ?>">
+                                          <?php if ($icon) : ?>
+                                            <img class="team-workers__icon" src="<?= $icon; ?>" alt="<?= strip_tags( $item->name ); ?>">
+                                          <?php endif; ?>
+                                          
+                                          <span class="team-workers__text">
+                                            <?= str_replace('\n', '<br>', $item->name); ?>
+                                          </span>
+                                        </a>
                                       </li>
                                     <?php endforeach; ?>                                  
                                   </ul>
