@@ -377,9 +377,9 @@
   /* ==============================================
   ********  //Редиректы
   =============================================== */
-  add_action( 'parse_query', 'disablet_some_links' );
+  add_action( 'parse_query', 'disabled_some_links' );
 
-  function disablet_some_links ( $query ) {
+  function disabled_some_links ( $query ) {
     if( is_category(  ) || is_singular( 'post' ) || (is_singular( 'projects' ) && !get_the_content(  )) ) {
         wp_redirect( home_url() );
 
