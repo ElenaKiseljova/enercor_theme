@@ -35,35 +35,50 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   });
-  const swiperTeamDesc = new Swiper('.swiper-team-desc', {
-    slidesPerView: 1,
-    spaceBetween: 20,
-    speed: 400,
-    loop: true,
-    allowTouchMove: false,
-    simulateTouch: false,
-    navigation: {
-      nextEl: '.team-workers__btn-right',
-      prevEl: '.team-workers__btn-left',
-    },
-  });
 
-  const swiperTeam = new Swiper('.swiper-team', {
-    slidesPerView: 'auto',
-    spaceBetween: 21,
-    speed: 500,
-    slideActiveClass: 'team-workers__slide--active',
-    loop: true,
+  const teamDesc = document.querySelector('.swiper-team-desc');
+  const team = document.querySelector('.swiper-team');
 
-    navigation: {
-      nextEl: '.team-workers__btn-right',
-      prevEl: '.team-workers__btn-left',
-    },
+  if (teamDesc && team) {
+    const swiperTeamDesc = new Swiper('.swiper-team-desc', {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      speed: 400,
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true
+      },
+      // loop: true,
+      allowTouchMove: false,
+      simulateTouch: false,
+      // navigation: {
+      //   nextEl: '.team-workers__btn-right',
+      //   prevEl: '.team-workers__btn-left',
+      // },
+    });
 
-    thumbs: {
-      swiper: swiperTeamDesc,
-    }
-  });
+    const swiperTeam = new Swiper('.swiper-team', {
+      slidesPerView: 'auto',
+      spaceBetween: 21,
+      speed: 500,
+      slideActiveClass: 'team-workers__slide--active',
+      // loop: true,
+
+      navigation: {
+        nextEl: '.team-workers__btn-left',
+        prevEl: '.team-workers__btn-right',
+      },
+
+      thumbs: {
+        swiper: swiperTeamDesc,
+      }
+    });
+
+    const lastSlideIndex = swiperTeamDesc.slides.length - 1;
+
+    swiperTeamDesc.slideTo(lastSlideIndex);
+    swiperTeam.slideTo(lastSlideIndex);
+  }
 
 
   let header = document.querySelector(".header"),
@@ -199,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // my version accordion
-  let accordion = document.querySelectorAll(".vacancies__accordion");
+  let accordion = document.querySelectorAll(".vacancies__accordion:not(.disabled)");
 
   accordion.forEach((item) => {
     item.addEventListener("click", () => {

@@ -16,9 +16,33 @@
       <?php endif; ?>
       
       <?php if ($text && !empty($text)) : ?>
-        <p class="team-start-screen__text start-screen-animate-js">
-          <?= $text; ?>
-        </p>
+        <div class="team-start-screen__text start-screen-animate-js">
+          <?php 
+            $button = get_field( 'button', $archive_team_page_id );
+
+            if ($button && !empty($button['title']) && !empty($button['link'])) : 
+              ?>
+                <div class="team-start-screen__button wrapper__btn wrapper__btn--black start-screen-animate-js">
+                  <div class="btn">
+                    <a href="<?= $member_id ? (get_permalink( $member_id ) . '#publications') : $button['link']; ?>" class="btn__link">
+                      <p class="btn__text" <?= $color ? 'style="color: ' . $color . ';"' : ''; ?>><?= $button['title']; ?></p>
+                      <div class="btn__arrow btn__arrow--reverse">
+                        <svg class="btn__arrow-icon" viewBox="0 0 22 22" width="22" height="22" fill="none">
+                          <path class="arrowLeftanimate" d="M3.375 10.8H18.225" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path class="arrowLeftanimate" d="M12.1504 4.7251L18.2254 10.8001L12.1504 16.8751" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              <?php 
+            endif;
+          ?>
+
+          <p class="team-start-screen__desc">
+            <?= $text; ?>
+          </p>          
+        </div>
       <?php endif; ?>      
     </div>
   </div>

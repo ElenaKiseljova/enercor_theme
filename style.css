@@ -56,11 +56,11 @@ input[type=radio].visually-hidden {
 
   margin-top: 10px;
 }
-
+/* 
 .contact__form-inputs {
   width: 416px;
   max-width: 100%;
-}
+} */
 
 .contact__form-inputs span {
   display: block;

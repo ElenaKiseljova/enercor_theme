@@ -3,8 +3,12 @@
 
   if ($vacancy && !empty($vacancy) && !is_wp_error( $vacancy )) {
     $title = $vacancy['title'] ?? '';
-    $count = $vacancy['count'] ?? 1;
+    $count = (int) $vacancy['count'] ?? 0;
     $content = $vacancy['content'] ?? '';
+
+    if ($count === 0) {
+      return;
+    }
   }
 
   $is_publications = is_tax( 'publications-category' );

@@ -13,19 +13,21 @@
             $item_list = $item['list'];
           ?>
           <li class="ability__item industrial__item">
-            <?php if ($icon && !empty($icon)) : ?>
-              <img src="<?= $icon; ?>" class="ability__item-img" alt="<?= !empty($title) ? $title : 'img'; ?>">
-            <?php endif; ?>            
+            <div class="ability__container">
+              <?php if ($icon && !empty($icon)) : ?>
+                <img src="<?= $icon; ?>" class="ability__item-img" alt="<?= !empty($title) ? $title : 'img'; ?>">
+              <?php endif; ?>            
 
-            <?php if ($item_list && !empty($item_list)) : ?>
-              <ul class="industrial__item-list">
-                <?php foreach ($item_list as $key => $item_inner) : ?>
-                  <li class="ability__item-info industrial__item-info">
-                      <?= $item_inner['text']; ?>
-                  </li>
-                <?php endforeach; ?>
-              </ul>
-            <?php endif; ?>
+              <?php if ($item_list && !empty($item_list)) : ?>
+                <ul class="industrial__item-list">
+                  <?php foreach ($item_list as $key => $item_inner) : ?>
+                    <li class="ability__item-info industrial__item-info">
+                        <?= $item_inner['text']; ?>
+                    </li>
+                  <?php endforeach; ?>
+                </ul>
+              <?php endif; ?>
+            </div>           
             
           </li>
         <?php endforeach; ?>        

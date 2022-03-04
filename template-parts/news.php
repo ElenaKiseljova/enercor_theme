@@ -8,6 +8,31 @@
     <?php if ( get_the_content(  ) ) : ?>
       <div class="news-info__notice <?= $is_vacancies ? 'news-info__notice--vacancies' : ''; ?> <?= $is_news ? 'news-info__notice--news' : ''; ?>">
         <?= get_the_content(  ); ?>
+
+        <?php 
+          if ( $is_vacancies ) {
+            $button = get_field( 'button' );
+      
+            if ($button && !empty($button['title']) && !empty($button['link'])) : 
+              ?>
+                <div class="vacancies__button wrapper__btn wrapper__btn--black start-screen-animate-js">
+                    <div class="btn">
+                        <a href="<?= $button['link']; ?>" class="btn__link">
+                            <span class="btn__text "><?= $button['title']; ?></span>
+                            <div class="btn__arrow ">
+                                <svg class="btn__arrow-icon" viewBox="0 0 22 22" width="22" height="22" fill="none">
+                                    <path class="arrowRightanimate" d="M3.375 10.8H18.225" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path class="arrowRightanimate" d="M12.1504 4.7251L18.2254 10.8001L12.1504 16.8751" stroke="currentColor" stroke-linecap="round"
+                                          stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+              <?php 
+            endif;
+          }
+        ?>
       </div>
     <?php endif; ?>
     

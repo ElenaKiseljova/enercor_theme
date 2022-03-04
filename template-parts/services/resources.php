@@ -28,7 +28,7 @@
               $icon = get_field( 'icon',  $expertise ) ?? '';
             ?>
             <li class="ability__item" id="expertise-<?= $expertise->term_id; ?>">              
-              <div class="abilyty__container">
+              <div class="ability__container">
                 <?php if ($icon && !empty($icon)) : ?>
                   <img <?= $item_icon_width ? 'width="' . $item_icon_width . '"' : ''; ?> src="<?= $icon; ?>" class="ability__item-img" alt="<?= $expertise->name ?? 'img'; ?>">
                 <?php endif; ?>            
