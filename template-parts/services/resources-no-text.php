@@ -2,7 +2,7 @@
   $list = get_sub_field( 'list' );
 ?>
 
-<section class="industrial">
+<section class="industrial" id="industrial">
   <div class="container">
     <?php if ($list && !empty($list) && !is_wp_error( $list )) : ?>
       <ul class="ability__list industrial__list">

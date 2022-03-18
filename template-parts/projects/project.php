@@ -1,4 +1,6 @@
 <?php 
+  $services_page_url = get_permalink( get_page_by_title( 'Services' ) ) ?? get_permalink( get_page_by_path( 'services' ) );
+
   $id = get_the_ID();
   $services = get_the_terms( $id, 'services' );
   
@@ -35,7 +37,7 @@
           <?php foreach ($services as $key => $service) : ?>
             <?php 
               $service_id = $service->term_id;
-              $service_link = get_term_link( $service_id, 'services' ); 
+              $service_link = $services_page_url;//get_term_link( $service_id, 'services' ); 
             ?>
             <?php if (!is_wp_error( $service_link )) : ?>
               <a href="<?= $service_link; ?>">
@@ -76,7 +78,7 @@
         <?php foreach ($services as $service) : ?>
           <?php 
             $service_id = $service->term_id;
-            $service_link = get_term_link( $service_id, 'services' ); 
+            $service_link = $services_page_url;//get_term_link( $service_id, 'services' ); 
           ?>
           <?php if (!is_wp_error( $service_link )) : ?>
             <a href="<?= $service_link; ?>">
