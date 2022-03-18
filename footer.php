@@ -34,20 +34,29 @@
                 </div>
               <?php endif; ?>                  
             </div>
-            <?php if (!empty($footer['cities']) && !is_wp_error( $footer['cities'] )) : ?>
-              <div class="footer__navigation-city">
-                <ul class="footer__navigation-city-list">  
-                  <?php foreach ($footer['cities'] as $city) : ?>
-                    <li class="footer__navigation-city-item">
-                      <a class="footer__navigation-city-link"
-                         href="<?= $footer['button'] && $footer['button']['link'] ? ($footer['button']['link'] . '?city=' . $city->name) : ''; ?>">
-                         <?= $city->name; ?>
-                      </a>
-                    </li>
-                  <?php endforeach; ?>    
-                </ul>
-              </div>
-            <?php endif; ?>            
+            
+            <div class="footer__navigation-city">
+              <ul class="footer__navigation-city-list"> 
+                <?php 
+                  $contact_page_id = 21;
+
+                  $cities = get_terms( [
+                    'taxonomy' => 'cities',
+                    'hide_empty' => false,
+                  ] ) ?? [];
+
+                  $city_cur = get_the_terms( get_the_ID(  ), 'cities' ) ?? [];
+                ?>
+                <?php foreach ($cities as $city) : ?>
+                  <li class="footer__navigation-city-item">
+                    <a class="footer__navigation-city-link"
+                        href="<?= get_permalink( $contact_page_id  ) . '?city=' . $city->name; ?>">
+                        <?= $city->name; ?>
+                    </a>
+                  </li>
+                <?php endforeach; ?>   
+              </ul>
+            </div>           
         </div>
     </div>
   <?php endif; ?>

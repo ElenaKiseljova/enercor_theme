@@ -1,4 +1,6 @@
 <?php 
+  $is_other_projects_page_id = is_page( 1111 ) || is_page( 970 );
+
   $member_id = null;
   $term = get_queried_object();
 
@@ -33,7 +35,7 @@
         <?php if (!empty($button['link']) || $member_id) : ?>
           <div class="wrapper__btn start-screen__contacts-btn">
             <div class="btn start-screen-animate-js">
-              <a href="<?= $member_id ? (get_permalink( $member_id ) . '#publications') : $button['link']; ?>" class="btn__link">
+              <a href="<?= $member_id ? (get_permalink( $member_id ) . '#publications') : $button['link']; ?><?= ($is_other_projects_page_id ||is_singular( 'projects' )) ? '#completed' : ''; ?>" class="btn__link">
                 <p class="btn__text start-screen__contacts-btn-text" <?= $color ? 'style="color: ' . $color . ';"' : ''; ?>><?= $button['title']; ?></p>
                 <div class="btn__arrow start-screen__contacts-btn-arrow">
                   <svg class="btn__arrow-icon start-screen__contacts-btn-arrow-icon" viewBox="0 0 22 22" width="22" height="22" fill="none">

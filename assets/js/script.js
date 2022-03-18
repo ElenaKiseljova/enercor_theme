@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
       fadeEffect: {
         crossFade: true
       },
-      // loop: true,
+      loop: true,
       allowTouchMove: false,
       simulateTouch: false,
       // navigation: {
@@ -62,11 +62,11 @@ document.addEventListener("DOMContentLoaded", function () {
       spaceBetween: 21,
       speed: 500,
       slideActiveClass: 'team-workers__slide--active',
-      // loop: true,
+      loop: true,
 
       navigation: {
-        nextEl: '.team-workers__btn-left',
-        prevEl: '.team-workers__btn-right',
+        nextEl: '.team-workers__btn-right',
+        prevEl: '.team-workers__btn-left',
       },
 
       thumbs: {
@@ -74,10 +74,10 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    const lastSlideIndex = swiperTeamDesc.slides.length - 1;
+    // const lastSlideIndex = swiperTeamDesc.slides.length - 1;
 
-    swiperTeamDesc.slideTo(lastSlideIndex);
-    swiperTeam.slideTo(lastSlideIndex);
+    // swiperTeamDesc.slideTo(lastSlideIndex);
+    // swiperTeam.slideTo(lastSlideIndex);
   }
 
 

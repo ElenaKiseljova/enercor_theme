@@ -34,8 +34,8 @@
           }
         ?>
       </div>
-    <?php endif; ?>
-    
+    <?php endif; ?> 
+
     <?php
       if ($is_news) {
         get_template_part( 'template-parts/social' );
@@ -43,38 +43,7 @@
         get_template_part( 'template-parts/accordions' );
       }          
     ?>
-
-    <?php 
-      $posts = get_posts(  ) ?? []; 
-    ?>
-    <?php if ( $is_news && $posts && !empty($posts) && !is_wp_error( $posts ) ) : ?>
-      <div class="posts">
-        <ul class="posts__list">
-          <?php foreach ($posts as $post) : ?>
-            <?php 
-              $title = $post->post_title;
-              $id = $post->ID;
-              
-              $content = $post->post_content;
-              
-              $image = get_the_post_thumbnail( $id ) ?? '';
-            ?>
-            <li class="posts__item">      
-              <h3 class="posts__title">
-                <?= $title; ?>
-              </h3>
-              <div class="posts__content news-info__notice">
-                <?= $content; ?>
-              </div>
-
-              <div class="posts__image">
-                <?= $image; ?>
-              </div>
-            </li>
-          <?php endforeach; ?>           
-        </ul>
-      </div>
-    <?php endif; ?>      
+    
   </div>
 </section>
 

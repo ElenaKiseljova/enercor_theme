@@ -1,24 +1,19 @@
 gsap.registerPlugin(ScrollTrigger);
 
-
-
-
-
-
-
-
 const defs = {
   duration: 0.5,
+  markers: true
 };
 
 const scrollTriggerInstance = (el, animation) => {
   return ScrollTrigger.create({
     animation,
     trigger: el,
-    start: "top center",
-
+    start: "top 90%",
+    // markers: true
   });
 };
+
 const animate = (el, items) => {
   const tl = gsap.timeline(defs);
   gsap.set(items, { opacity: 0 });
