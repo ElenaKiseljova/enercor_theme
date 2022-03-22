@@ -380,7 +380,11 @@
   add_action( 'parse_query', 'disabled_some_links' );
 
   function disabled_some_links ( $query ) {
-    if( is_category(  ) || is_singular( 'post' ) || (is_singular( 'projects' ) && !get_the_content(  )) ) {
+    if( is_category(  ) || 
+        is_singular( 'post' ) || 
+        (is_singular( 'projects' ) && !get_the_content(  )) ||
+        (is_tax( 'services' ) && empty(term_description()))
+        ) {
         wp_redirect( home_url() );
 
         exit;
