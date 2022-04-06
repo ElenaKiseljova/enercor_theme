@@ -31,6 +31,22 @@
       <?php if ($title && !empty($title)) : ?>
         <div class="start-screen__projects-title start-screen-animate-js <?= $circles_count > 3 ? 'start-screen__service-title' : ''; ?>" <?= $color ? 'style="color: ' . $color . ';"' : ''; ?>>
           <?= $title; ?>
+
+          <div class="start-screen__btn wrapper__btn wrapper__btn--black start-screen-animate-js">
+            <div class="btn">
+              <a href="<?= get_bloginfo( 'url' ); ?>#services" class="btn__link">
+                <p class="btn__text">Back to Main</p>
+                <div class="btn__arrow btn__arrow--reverse">
+                  <svg class="btn__arrow-icon" viewBox="0 0 22 22" width="22" height="22" fill="none">
+                    <path class="arrowLeftanimate" d="M3.375 10.8H18.225" stroke="currentColor" stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                    <path class="arrowLeftanimate" d="M12.1504 4.7251L18.2254 10.8001L12.1504 16.8751"
+                      stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
       <?php endif; ?>  
       

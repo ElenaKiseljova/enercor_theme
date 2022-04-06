@@ -16,7 +16,7 @@
     <?php endif; ?>
     
     <?php 
-      get_template_part( 'template-parts/enercor/values' );
+      get_template_part( 'template-parts/enercor/mission', 'circles' );
     ?>    
   </div>
 </section>

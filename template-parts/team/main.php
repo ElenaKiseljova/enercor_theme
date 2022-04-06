@@ -24,7 +24,7 @@
               ?>
                 <div class="team-start-screen__button wrapper__btn wrapper__btn--black start-screen-animate-js">
                   <div class="btn">
-                    <a href="<?= $member_id ? (get_permalink( $member_id ) . '#publications') : $button['link']; ?>" class="btn__link">
+                    <a href="<?= $button['link']; ?>#team" class="btn__link">
                       <p class="btn__text" <?= $color ? 'style="color: ' . $color . ';"' : ''; ?>><?= $button['title']; ?></p>
                       <div class="btn__arrow btn__arrow--reverse">
                         <svg class="btn__arrow-icon" viewBox="0 0 22 22" width="22" height="22" fill="none">

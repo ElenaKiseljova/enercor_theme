@@ -14,7 +14,7 @@
       <ul class="clients__circle">
         <?php foreach ($circles as $key => $circle) : ?>
           <li class="clients__circle-item">
-            <?= $circle['text']; ?>
+            <p><?= $circle['text']; ?></p>
           </li>
         <?php endforeach; ?>      
       </ul>

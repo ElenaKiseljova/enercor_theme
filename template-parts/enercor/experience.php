@@ -5,7 +5,7 @@
   $button = get_sub_field( 'button' ); 
 ?>
 
-<section class="experience">
+<section class="experience" id="experience">
   <div class="container">
     <?php if ($image && !empty($image) && !is_wp_error( $image )) : ?>
       <img src="<?= $image['sizes']['main_bg']; ?>" class="experience__img" alt="enercor bg section">

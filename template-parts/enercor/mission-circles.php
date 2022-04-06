@@ -17,7 +17,7 @@
     <ul class="mission__circle">
       <?php foreach ($list as $key => $item) : ?>
         <li class="mission__circle-item">
-            <?= $item['text']; ?>
+          <?= $item['text']; ?>           
         </li>
       <?php endforeach; ?>
     </ul>

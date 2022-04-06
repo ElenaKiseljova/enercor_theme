@@ -31,12 +31,12 @@
       ?>         
 
       <div class="popup">
+        <button class="popup__close"></button>
           <div class="popup__header">
             
           </div>
           <div class="popup__content">
-              <div class="popup__content-wrap">
-                  
+              <div class="popup__content-wrap">                  
               </div>
           </div>
       </div>

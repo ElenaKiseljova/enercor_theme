@@ -90,7 +90,7 @@
         <div class="selected__wrapper-btn">
           <div class="wrapper__btn ">
             <div class="btn">
-                <a href="<?= $button['link']; ?>" class="btn__link selected__btn">
+                <a href="<?= $button['link']; ?>#completed" class="btn__link selected__btn">
                     <div class="btn__arrow ">
                         <svg class="btn__arrow-icon selected__btn-arrow-icon" width="22" height="22"
                               fill="none">

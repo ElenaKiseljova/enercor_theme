@@ -129,7 +129,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let projectsSlide = document.querySelectorAll(".completed-projects--slide"),
     popupSlide = document.querySelector(".popup"),
-    overlay = document.querySelector(".js-overlay-modal");
+    overlay = document.querySelector(".js-overlay-modal"),
+    popupClose = document.querySelector(".popup__close");
 
 
   window.activateProjectsPopup = (projects) => {
@@ -154,6 +155,13 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   window.activateProjectsPopup(projectsSlide);
+  if (popupClose) {
+    popupClose.addEventListener("click", () => {
+      popupSlide.classList.remove("popup__show");
+      overlay.classList.remove("active");
+      bodyDontScroll.classList.remove("body-scroll");
+    })
+  }
 
   document.body.addEventListener('keyup', function (e) {
     var key = e.keyCode;
@@ -236,6 +244,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* Плавный скролл к элементам */
   window.scrollSmooth = (container = document) => {
+    const hrefAttributes = container.querySelectorAll("a[href*='#']");
+
     let headerHeight = 96;
 
     const header = document.querySelector('.header');
@@ -244,8 +254,14 @@ document.addEventListener("DOMContentLoaded", function () {
       headerHeight = header.offsetHeight;
     }
 
-    const scrollToHash = (hash, offset) => {
-      const scrollTarget = document.getElementById(hash);
+    const scrollToHash = (hash = false, offset, element = false) => {
+      let scrollTarget;
+
+      if (hash) {
+        scrollTarget = document.getElementById(hash);
+      } else if (element && hrefAttributes && hrefAttributes[element]) {
+        scrollTarget = hrefAttributes[element];
+      }
 
       const elementPosition = scrollTarget.getBoundingClientRect().top;
       const offsetPosition = elementPosition - offset;
@@ -256,15 +272,27 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     };
 
+    const backButton = document.querySelector('.back a');
+
+    if (backButton) {
+      backButton.addEventListener('click', (evt) => {
+        const backButtonElement = backButton.dataset.element;
+
+        if (backButtonElement && backButtonElement.length > 0) {
+          evt.preventDefault();
+
+          scrollToHash(false, headerHeight, backButtonElement);
+        }
+      });
+    }
+
     if (hash) {
       scrollToHash(hash, headerHeight);
     }
 
-    const hrefAttributes = container.querySelectorAll("a[href*='#']");
-
     if (hrefAttributes.length > 0) {
 
-      hrefAttributes.forEach((item) => {
+      hrefAttributes.forEach((item, i) => {
         const href = item.href.split('#');
 
         const CURRENT_URL = window.location.origin + window.location.pathname;
@@ -273,7 +301,13 @@ document.addEventListener("DOMContentLoaded", function () {
           item.addEventListener('click', (e) => {
             e.preventDefault();
 
+            console.log();
+
             scrollToHash(href[1], headerHeight);
+
+            if (backButton) {
+              backButton.dataset.element = i;
+            }
           });
         }
       });

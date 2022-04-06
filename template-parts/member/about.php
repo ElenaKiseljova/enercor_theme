@@ -69,6 +69,22 @@
             </div>
           <?php endif; ?>            
         </div>
+
+        <div class="wrapper__btn wrapper__btn--black start-screen-animate-js">
+            <div class="btn">
+              <a href="<?= get_post_type_archive_link( 'team' ); ?>" class="btn__link">
+                <p class="btn__text">Back to leadership team</p>
+                <div class="btn__arrow btn__arrow--reverse">
+                  <svg class="btn__arrow-icon" viewBox="0 0 22 22" width="22" height="22" fill="none">
+                    <path class="arrowLeftanimate" d="M3.375 10.8H18.225" stroke="currentColor" stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                    <path class="arrowLeftanimate" d="M12.1504 4.7251L18.2254 10.8001L12.1504 16.8751"
+                      stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </div>
+              </a>
+            </div>
+          </div>
     </div>
 
     <?php if ($achievements && !empty($achievements) && !is_wp_error( $achievements )) : ?>
