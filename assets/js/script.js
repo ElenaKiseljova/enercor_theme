@@ -282,6 +282,8 @@ document.addEventListener("DOMContentLoaded", function () {
           evt.preventDefault();
 
           scrollToHash(false, headerHeight, backButtonElement);
+
+          backButton.classList.remove('show');
         }
       });
     }
@@ -306,6 +308,7 @@ document.addEventListener("DOMContentLoaded", function () {
             scrollToHash(href[1], headerHeight);
 
             if (backButton) {
+              backButton.classList.add('show');
               backButton.dataset.element = i;
             }
           });

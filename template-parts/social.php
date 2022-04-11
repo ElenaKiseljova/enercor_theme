@@ -35,7 +35,7 @@
                     <use xlink:href="<?= get_template_directory_uri(); ?>/assets/img/sprite.svg#<?= mb_strtolower($menu_item->title); ?>"></use>
                   </svg>
                 </span>
-                <?= $value['title']; ?>
+                <?= $menu_item->title; ?>
               </a>
             </li>           
           <?php endforeach; ?>          

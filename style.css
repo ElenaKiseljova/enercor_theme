@@ -103,27 +103,61 @@ input[type=radio].visually-hidden {
 .back {
   position: fixed;
 
-  top: 120px;
-  left: 20px;
+  bottom: 80px;
+  right: 20px;
 
   z-index: 100;
+}
+.back__link {
+  flex-direction: column;
 
+  align-items: center;
+  justify-content: flex-start;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition: opacity 0.3s;
+}
+
+.back__link.show {
+  opacity: 1;
+
+  pointer-events: all;
+
+  transition: opacity 0.3s;
+}
+
+.back__icon {
   background: #ffffff;
 
   border-radius: 50%;
 
+  transform: rotate(-90deg);
+
   overflow: hidden;
+}
+
+.back__text {
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+
+  margin: 0 0 5px 0!important;
+
+  color: #000000;
 }
 
 @media screen and (max-width: 767px) {
   .back {
-    top: 80px;
-    left: 36px;
+    bottom: 50px;
+    right: 36px;
   }
 }
 
 @media screen and (max-width: 576px) {
   .back {
-    left: 15px;
+    bottom: 15px;
+    right: 5px;
   }
 }

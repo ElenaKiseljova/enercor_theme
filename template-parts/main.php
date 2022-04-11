@@ -42,7 +42,7 @@
             }
 
             if ( $is_other_projects_page_id || is_singular( 'projects' ) ) {
-              $link = get_post_type_archive_link( 'projects' ) . '#completed';
+              $link = 'javascript:history.back()';
 
               $link_text = 'Back to Projects';
             }

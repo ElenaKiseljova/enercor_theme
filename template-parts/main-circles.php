@@ -36,7 +36,7 @@
             <div class="btn">
               <a href="<?= get_bloginfo( 'url' ); ?>#services" class="btn__link">
                 <p class="btn__text">Back to Main</p>
-                <div class="btn__arrow btn__arrow--reverse">
+                <div class="btn__arrow btn__arrow--white btn__arrow--reverse">
                   <svg class="btn__arrow-icon" viewBox="0 0 22 22" width="22" height="22" fill="none">
                     <path class="arrowLeftanimate" d="M3.375 10.8H18.225" stroke="currentColor" stroke-linecap="round"
                       stroke-linejoin="round"></path>
