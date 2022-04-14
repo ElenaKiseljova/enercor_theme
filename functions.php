@@ -488,8 +488,8 @@
   function mindbase_create_acf_pages() {
     if(function_exists('acf_add_options_page')) {
       acf_add_options_page(array(
-        'page_title' 	=> 'Страницы для Архивов',
-        'menu_title'	=> 'Страницы для Архивов',
+        'page_title' 	=> 'Настройки для темы Enercor',
+        'menu_title'	=> 'Настройки для темы Enercor',
         'menu_slug' 	=> 'pages-for-archives',
         'capability'	=> 'edit_posts',
         'icon_url' => 'dashicons-archive',
