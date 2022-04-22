@@ -381,13 +381,33 @@
 
   function disabled_some_links ( $query ) {
     if( is_category(  ) || 
-        is_singular( 'post' ) || 
-        (is_singular( 'projects' ) && !get_the_content(  )) ||
-        (is_tax( 'services' ) && empty(term_description()))
+        is_singular( 'post' )
         ) {
         wp_redirect( home_url() );
 
         exit;
+    }
+
+    if (is_tax( 'services' ) && empty(term_description())) {
+      $url = get_home_url( null, 'services' ) . '#services';
+
+      wp_redirect( $url );
+
+      exit;
+    }
+
+    if (is_singular( 'projects' ) && !get_the_content(  )) {
+      $url = home_url();
+
+      if (get_permalink( '1111' )) {
+        $url = get_permalink( '1111' );
+      } else if (get_permalink( '970' )) {
+        $url = get_permalink( '970' );
+      }
+
+      wp_redirect( $url );
+
+      exit;
     }
   }
   
