@@ -26,8 +26,8 @@
 
           break;
 
-        case 'MOSCOW':
-          $form_shortcode = '[contact-form-7 id="1065" title="Contacts page - Moscow"]';
+        case 'ALMATY':
+          $form_shortcode = '[contact-form-7 id="1065" title="Contacts page - Almaty"]';
 
           break;
 
