@@ -94,12 +94,6 @@ input[type=radio].visually-hidden {
   content: attr(data-file);
 }
 
-/* Team slider */
-
-.team-workers__slide p {
-  overflow-wrap: normal;
-}
-
 .back {
   position: fixed;
 
@@ -160,4 +154,8 @@ input[type=radio].visually-hidden {
     bottom: 15px;
     right: 5px;
   }
+}
+
+.grecaptcha-badge {
+  display: none;
 }
