@@ -1,6 +1,8 @@
 <?php 
   $form = get_field( 'form' );
 
+  $address = get_field( 'address' ) ?? [];
+
   $current_city = isset($_GET['city']) ? $_GET['city'] : null;
 ?>
 <?php if ($form && !is_wp_error( $form )) : ?>
@@ -45,9 +47,20 @@
       echo do_shortcode( $form_shortcode );
     ?>
 
-    <?php
-      get_template_part( 'template-parts/social' );
-    ?>
+    <div class="contact__follow">
+      <div class="contact__address">
+        <?php if ($address && !empty($address) && is_array($address) && !is_wp_error( $address )) : ?>
+          <?php foreach ($address as $key => $row) : ?>
+            <p><?= $row['text'] ?? ''; ?></p>
+          <?php endforeach; ?>
+        <?php endif; ?> 
+      </div>
+      <div class="contact__social">
+        <?php
+          get_template_part( 'template-parts/social' );
+        ?>
+      </div> 
+    </div>       
   </div>
 <?php endif; ?>
 
