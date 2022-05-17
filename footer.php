@@ -96,11 +96,15 @@
                   );	
                 ?>
               </nav>
+
+              <p class="footer__privacy footer__privacy--desktop">
+                @<?= date('Y'); ?> Enercor Management Solutions Ltd. All rights reserved.
+              </p>
           </div>
       </div>
       <div class="container">
-        <p class="footer__privacy">
-          @<?= date('Y'); ?> Enercor Management Solutions Ltd. <br>All rights reserved.
+        <p class="footer__privacy footer__privacy--mobile">
+          @<?= date('Y'); ?> Enercor Management Solutions Ltd. All rights reserved.
         </p>
       </div>
     </div>
