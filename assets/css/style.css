@@ -9244,9 +9244,14 @@ img {
   -webkit-box-align: baseline;
       -ms-flex-align: baseline;
           align-items: baseline;
-  padding: 0 12.5%;
+  padding: 0 180px;
   position: relative;
   z-index: 2;
+}
+@media (max-width: 1570px) {
+  .footer__wrapper-top > .container {
+    padding: 0 11.4649681529%;
+  }
 }
 @media (max-width: 992px) {
   .footer__wrapper-top > .container {
@@ -9292,9 +9297,14 @@ img {
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 12.5%;
+  padding: 0 180px;
   position: relative;
   z-index: 2;
+}
+@media (max-width: 1570px) {
+  .footer__wrapper-bottom > .container {
+    padding: 0 11.4649681529%;
+  }
 }
 @media (max-width: 992px) {
   .footer__wrapper-bottom > .container {
