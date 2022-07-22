@@ -100,12 +100,22 @@
               <p class="footer__privacy footer__privacy--desktop">
                 @<?= date('Y'); ?> Enercor Management Solutions Ltd. All rights reserved.
               </p>
+              <?php if (!is_front_page(  )) : ?>
+                <p class="development development--desktop">
+                  <a class="development__link" href="https://wnauts.com/website-development-on-wordpress/" target="_blank">Web Development</a>
+                </p>
+              <?php endif; ?>              
           </div>
       </div>
       <div class="container">
         <p class="footer__privacy footer__privacy--mobile">
           @<?= date('Y'); ?> Enercor Management Solutions Ltd. All rights reserved.
         </p>
+        <?php if (!is_front_page(  )) : ?>
+          <p class="development development--mobile">
+            <a class="development__link" href="https://wnauts.com/website-development-on-wordpress/" target="_blank">Web Development</a>
+          </p>
+        <?php endif; ?>        
       </div>
     </div>
 </footer>
